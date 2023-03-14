@@ -12,8 +12,9 @@ class Admin(Account):
         self.__permission = permission
 
 class User(Account):
-    def __init__(self, country, mobile, user_id):
+    def __init__(self, country, mobile, user_id, user_data_list):
         Account.__init__(self, name, surname, email, password, status)
         self.__country = country
         self.__mobile = mobile
         self.__user_id = user_id
+        self.__user_data_list = user_data_list 
