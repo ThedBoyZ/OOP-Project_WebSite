@@ -1,8 +1,9 @@
 class Account:
-    def __init__(self, name, surname, email, status):
+    def __init__(self, name, surname, email, password, status):
         self.__name = name
         self.__surname = surname
         self.__email = email
+        self._password = password
         self._status = status
 
 class Admin(Account):
