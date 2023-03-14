@@ -8,11 +8,11 @@ class Account:
 
 class Admin(Account):
     def __init__(self, permission):
-        Account.__init__(self, name, surname, email, status)
+        Account.__init__(self, name, surname, email, password, status)
         self.permission = permission
 
 class User(Account):
     def __init__(self, country, mobile):
-        Account.__init__(self, name, surname, email, status)
+        Account.__init__(self, name, surname, email, password, status)
         self.country = country
         self.mobile = mobile
