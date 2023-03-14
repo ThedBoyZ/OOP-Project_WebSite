@@ -84,7 +84,15 @@ class Airline:
     def __init(self, name, logo):
         self.name = name
         self.logo = logo
-
+class Payment:
+    def __init__(self, method, currency, company_bank_account, status, time_purchase, transaction_id):
+        self.__method = method
+        self.__currency = currency
+        self.__company_bank_account = company_bank_account
+        self.__status = status
+        self.__time_purchase =time_purchase
+        self.__transaction_id = transaction_id
+        
 class InternetBankingTransaction:
     def __init__(self, logo, name__on_card):
         self.__logo = logo
