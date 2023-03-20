@@ -2,12 +2,28 @@ class Booking:
     def __init__(self, status, typestavel):
         self.__status = status
         self.__typestavel = typestavel
+    def initiate_booking():
+        pass
+    def check_order_code():
+        pass
+    def check_booking_status():
+        pass
+    def update_add_on_detail():
+        return True
 
 class Airport:
     def __init__(self, province_name, country_name, abbreviation):
         self.__province_name = province_name
         self.__country_name = country_name
         self.__abbreviation = abbreviation
+    def call_flight_airport():
+        return True
+    def modify_selected_airport(str):
+        pass
+    def update_airport_detail(str):
+        pass
+    def change_trip_date():
+        return True
 
 class Flight:
     def __init__(self, type_trip, id, baggage, refund, reschedule, status, \
@@ -25,13 +41,35 @@ class Flight:
         self.arrival_date = arrival_date
         self.arrival_time = arrival_time
         self.tax = tax
+    def get_flight_detail():
+        return True
+    def select_flight_detail(str):
+        return True
+    def modify_selected_flight():
+        pass
+    def update_flight_detail():
+        pass
 
-class Collection:
+class Trip:
     def __init__(self, flight, count_transit):
         self._flight = flight
         self.__count_transit = count_transit
+    def select_flight_detail(departure_airport,arrival_airport):
+        return True
+    def change_trip_date(departure_date, arrival_date): 
+        return True
+    def displayTrip():
+        return True
+    def update_trip_detail():
+        return 1
 
 class Airline:
     def __init__(self, name , logo):
         self.name = name
         self.logo = logo
+    def call_flight_airline():
+        return True
+    
+#True = return String
+#1 = return int
+#pass = void
