@@ -7,5 +7,7 @@ class System:
             dict_data = json.loads(data)
 
         f.close()
-
+        print(list(dict_data.keys()))
         return dict_data
+
+System.read_data()

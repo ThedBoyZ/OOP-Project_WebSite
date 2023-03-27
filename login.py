@@ -19,7 +19,7 @@ class Account:
         #self.__hashed_password = hashlib.sha256(self._encoded_password).hexdigest()
         
         try:
-            if self._password == str(System.read_data()[f'{self._email}']):
+            if self._email in str(list(System.read_data().keys())) and self._password == str(System.read_data()[f'{self._email}']):
                 print("complete")
                
         except KeyError:
