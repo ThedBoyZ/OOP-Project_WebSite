@@ -55,5 +55,3 @@ if __name__ == "__main__":
     booking1 = Booking("B001", trip1, [passenger1, passenger2], contact_info, date.today(), "Pending")
     print(booking1.total_price)
     print(booking1.trip)
-
-    #name

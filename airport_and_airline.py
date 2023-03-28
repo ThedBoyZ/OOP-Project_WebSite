@@ -34,7 +34,7 @@ class AirlineCollection:
         self.airlines = []
     
     def add_airline(self, name, logo):
-        airline = Airline(name, logo)
+        airline = Airline(name, Image(logo))
         self.airlines.append(airline)
     
     def print_airlines(self):
@@ -79,22 +79,22 @@ class AirportCollection:
 
 
 if __name__ == '__main__':
-    # image = Image('images/airlines/bangkok_airways.png')
+    image = Image('images/airlines/nok_air.png')
     # print(image.get_image_data())
-    # image.display_image()
+    image.display_image()
 
-    airport_coll = AirportCollection()
-    airport_coll.add_airport("Suvarnabhumi Airport", "BKK", "")
-    airport_coll.add_airport("Don Mueang International Airport", "DMK", "Terminal 2")
-    airport_coll.add_airport("Chiang Mai International Airport", "CNX", "Terminal Domestic")
+    # airport_coll = AirportCollection()
+    # airport_coll.add_airport("Suvarnabhumi Airport", "BKK", "")
+    # airport_coll.add_airport("Don Mueang International Airport", "DMK", "Terminal 2")
+    # airport_coll.add_airport("Chiang Mai International Airport", "CNX", "Terminal Domestic")
 
-    print(airport_coll.get_airport_name("BKK"))
+    # print(airport_coll.get_airport_name("BKK"))
 
-    airline_coll = AirlineCollection()
-    airline_coll.add_airline("Thai Vietjet Air" , Image('images/airlines/thai_vietjet_air.png'))
-    airline_coll.add_airline("Bangkok Airways"  , Image('images/airlines/bangkok_airways.png'))
-    airline_coll.add_airline("Thai Smile Air"   , Image('images/airlines/thai_smile_air.png'))
-    airline_coll.add_airline("Thai AirAsia"     , Image('images/airlines/thai_airasia.png'))
+    # airline_coll = AirlineCollection()
+    # airline_coll.add_airline("Thai Vietjet Air" , Image('images/airlines/thai_vietjet_air.png'))
+    # airline_coll.add_airline("Bangkok Airways"  , Image('images/airlines/bangkok_airways.png'))
+    # airline_coll.add_airline("Thai Smile Air"   , Image('images/airlines/thai_smile_air.png'))
+    # airline_coll.add_airline("Thai AirAsia"     , Image('images/airlines/thai_airasia.png'))
 
 
-    print(airline_coll.get_airline_image("Thai Vietjet Air"))
+    # print(airline_coll.get_airline_image("Thai Vietjet Air"))

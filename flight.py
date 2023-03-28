@@ -7,11 +7,11 @@ airport_coll.add_airport("Don Mueang International Airport", "DMK", "Terminal 2"
 airport_coll.add_airport("Chiang Mai International Airport", "CNX", "Terminal Domestic")
 
 airline_coll = AirlineCollection()
-airline_coll.add_airline("Thai Vietjet Air" , Image('images/airlines/thai_vietjet_air.png'))
-airline_coll.add_airline("Bangkok Airways"  , Image('images/airlines/bangkok_airways.png'))
-airline_coll.add_airline("Thai Smile Air"   , Image('images/airlines/thai_smile_air.png'))
-airline_coll.add_airline("Thai AirAsia"     , Image('images/airlines/thai_airasia.png'))
-airline_coll.add_airline("Nok Air"          , Image('images/airlines/nok_air.png'))
+airline_coll.add_airline("Thai Vietjet Air" , "images/airlines/thai_vietjet_air.png")
+airline_coll.add_airline("Bangkok Airways"  , "images/airlines/bangkok_airways.png")
+airline_coll.add_airline("Thai Smile Air"   , "images/airlines/thai_smile_air.png")
+airline_coll.add_airline("Thai AirAsia"     , "images/airlines/thai_airasia.png")
+airline_coll.add_airline("Nok Air"          , "images/airlines/nok_air.png")
 
 class Flight:
     def __init__(self, flight_id, departure_airport_code, arrival_airport_code, day, departure_datetime, arrival_datetime, airline_name, cabin_baggage=0, refund=False, reschedule=False, status="On Time"):
