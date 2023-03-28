@@ -47,4 +47,3 @@ class Trip:
 trip1 = Trip(1)
 trip1.add_flight(bkk_to_cnx)
 trip1.add_flight(cnx_to_bkk)
-
