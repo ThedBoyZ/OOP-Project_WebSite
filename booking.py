@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     # trip
     trip1 = Trip([flight1, flight2], count_transit=1)
-    
+
     # passengers
     passenger1 = TravelerInfo("Child", "", "Male", "Peter", "Parker", date(2007, 10, 14), "Thailand", "15")
     passenger2 = TravelerInfo("Adult", "Mr.", "Female", "Pim", "Niyom", date(1999, 3, 7), "Thailand", "20")
@@ -55,3 +55,5 @@ if __name__ == "__main__":
     booking1 = Booking("B001", trip1, [passenger1, passenger2], contact_info, date.today(), "Pending")
     print(booking1.total_price)
     print(booking1.trip)
+
+    #name
