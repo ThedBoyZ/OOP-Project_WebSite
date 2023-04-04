@@ -1,5 +1,6 @@
 import hashlib
 from system import System
+from total_price import PriceDetailCollection
 class User:
     def __init__(self, name="guest", surname="guest", email="guest", password="guest", status="guest"):
         self._name = name
@@ -66,9 +67,11 @@ class User:
 
         print(exist_data)
 
-p1 = User()
+    def refund(self):
+        print("refunded", System.get_purchased(self._email))
+        System.reset_purchased(self._email)
+        
 
-p1.register("ping" ,"uuux","pinguuux@", "1234", "1234", "TH")
+p1 = User("Ping", "uuux", "pinguuux@", "1234", "Customer")
 
-p1.edit_account("pinguuux@", "PING", "UUUX", "JP")
-
+p1.refund()

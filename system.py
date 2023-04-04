@@ -39,9 +39,32 @@ class System:
             json.dump(exsist_data, f)
         f.close()
 
-print(System.read_data())
+    def write_purchased(email, price):
+        exsist_data = System.read_data()
+        exsist_data[email]["purchased"] = price
 
-System.delete_data("AB@")
+        with open("data.txt", "w") as f:
+            json.dump(exsist_data, f)
+        f.close()
 
-print(System.read_data())
+    def reset_purchased(email):
+        exsist_data = System.read_data()
+        exsist_data[email]["purchased"] = 0
+        with open("data.txt", "w") as f:
+            json.dump(exsist_data, f)
+        f.close()
+
+    def get_purchased(email):
+        exsist_data = System.read_data()
+        print(exsist_data[email]["purchased"])
+        return exsist_data[email]["purchased"]
+
+
+
+#print(System.read_data())
+
+#System.delete_data("AB@")
+System.get_purchased("pinguuux@")
+
+#print(System.read_data())
 
