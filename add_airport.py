@@ -34,8 +34,5 @@ if __name__ == "__main__":
     # Adding an airline
     airport_collection.add_airport("Phuket International Airport", "HKT")
 
-    # Removing an airline
-    airport_collection.remove_airport("Suvarnabhumi Airport")
-
     # Printing the list of airlines
     airport_collection.print_airports()
