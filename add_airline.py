@@ -36,8 +36,5 @@ if __name__ == "__main__":
     # Adding an airline
     airline_collection.add_airline("Thai Lion Air", "images/airlines/thai_lion_air.png")
 
-    # Removing an airline
-    airline_collection.remove_airline("Nok Air")
-
     # Printing the list of airlines
     airline_collection.print_airlines()
