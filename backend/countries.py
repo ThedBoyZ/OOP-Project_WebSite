@@ -50,4 +50,4 @@ if __name__ == "__main__":
     # country.add_country("Zzzz", "+67")
     # country.remove_country("Zzzz")
     print(country)
-    print(country.country_dict)
+    # print(country.country_dict["Thailand"]["code"])

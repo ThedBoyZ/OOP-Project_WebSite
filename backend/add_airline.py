@@ -11,6 +11,7 @@ class AirlineCollection:
         self.add_airline("Thai Smile Air"   , "images/airlines/thai_smile_air.png")
         self.add_airline("Thai AirAsia"     , "images/airlines/thai_airasia.png")
         self.add_airline("Nok Air"          , "images/airlines/nok_air.png")
+        self.add_airline("Singapore Airlines", "images/airlines/nok_air.png")
     
     def add_airline(self, name, logo_file):
         if name in self.airlines:
