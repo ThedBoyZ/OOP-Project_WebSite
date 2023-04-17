@@ -14,8 +14,7 @@ airline_coll.add_airline("Thai Smile Air"   , "images/airlines/thai_smile_air.pn
 airline_coll.add_airline("Thai AirAsia"     , "images/airlines/thai_airasia.png")
 airline_coll.add_airline("Nok Air"          , "images/airlines/nok_air.png")  
 class Trip(list):
-    def search_flight(self, departure_airport,arrival_airport):
-        pass
+    
     def search_airline(self, airline_name, day):
         matching_flights = []
         for flight in Flight.all_flight:
@@ -58,9 +57,6 @@ class Flight:
         self.detail.append(refund)
         self.detail.append(id)
         self.all_flight.append(self.detail)
-
-        def build_flight(self):
-            return Flight(self.airline_name, self.day, self.departure_airport, None, self.departure_time, self.arrival_airport, None, self.arrival_time, self.baggage, self.refund, self.flight_id, self.status)
         
 
 class Element_Details_Flight:
@@ -89,52 +85,41 @@ element_details1 = Element_Details_Flight(
     ["One Way","Round Trip"]
 )
 ################## Vietjet Bangkok to Chiang Mai##########################
-class Flight_details:
-    def __init__(self, vietjet_flight_ids, departure_VietJet):
-        i = "01:15"
-        # Time Revival
-        self.vietjet_flight_ids = {
-            "06:10": "VZ100",  "07:40": "VZ114",  "08:00": "VZ317",  "08:55": "VZ315",  "10:00": "VZ102",  "12:40": "VZ104",
-            "14:25": "VZ106",  "15:30": "VZ110",  "15:35": "VZ120",  "18:00": "VZ2104",
-            "19:40": "VZ118",  "20:40": "VZ2106", "21:30": "VZ2114"
-        }
+i = "01:15"
+# Time Revival
+vietjet_flight_ids = {
+    "06:10": "VZ100",  "07:40": "VZ114",  "08:00": "VZ317",  "08:55": "VZ315",  "10:00": "VZ102",  "12:40": "VZ104",
+    "14:25": "VZ106",  "15:30": "VZ110",  "15:35": "VZ120",  "18:00": "VZ2104",
+    "19:40": "VZ118",  "20:40": "VZ2106", "21:30": "VZ2114"
+}
 
-        departure_VietJet(BKK,CNX) = {
-            'Monday': ["06:10", "10:00", "12:40", "14:25", "15:30", "18:00", "20:40", "21:30"],
-            'Tuesday': ["06:10", "07:40", "20:40", "21:30"],
-            'Wednesday': ["06:10", "12:40", "14:25", "15:35", "18:00","20:40", "21:30"],
-            'Thursday': ["06:10", "07:40", "10:00", "12:40", "14:25", "15:30", "18:00", "19:40", "20:40", "21:30"],
-            'Friday': ["06:10", "07:40", "10:00", "12:40", "14:25", "15:30", "18:00", "20:40", "21:30"],
-            'Saturday': ["06:10", "07:40", "10:00", "12:40", "14:25", "15:30", "18:00", "19:40", "20:40", "21:30"],
-            'Sunday': ["06:10", "07:40", "10:00", "12:40", "14:25", "15:30", "18:00", "19:40", "20:40", "21:30"]
-        }
-        departure_VietJet_BKK_to_HKT = {
-            'Monday': ["07:00", "10:50", "13:15", "13:50", "15:35", "16:35", "18:15", "20:30", "21:35"],
-            'Tuesday': ["07:00", "10:45", "10:50", "12:55", "13:50", "15:35", "16:35", "18:15", "20:30", "21:35"],
-            'Wednesday': ["07:00", "10:50", "13:15", "13:50", "14:40", "15:35", "16:35", "18:15", "20:30", "21:35"],
-            'Thursday': ["07:00", "10:50", "12:55", "13:50", "15:35", "16:35", "18:15", "20:30", "21:35"],
-            'Friday': ["07:00", "10:50", "13:50", "15:35", "16:35", "18:15", "20:30", "21:35"],
-            'Saturday': ["07:00", "10:50", "12:55", "13:50", "15:35", "16:35", "18:15", "20:30", "21:35"],
-            'Sunday': ["07:00", "10:50", "13:50", "15:35", "16:35", "18:15", "20:30", "21:35"]
-        }
+departure_VietJet_BKK_to_CNX = {
+    'Monday': ["06:10", "10:00", "12:40", "14:25", "15:30", "18:00", "20:40", "21:30"],
+    'Tuesday': ["06:10", "07:40", "20:40", "21:30"],
+    'Wednesday': ["06:10", "12:40", "14:25", "15:35", "18:00","20:40", "21:30"],
+    'Thursday': ["06:10", "07:40", "10:00", "12:40", "14:25", "15:30", "18:00", "19:40", "20:40", "21:30"],
+    'Friday': ["06:10", "07:40", "10:00", "12:40", "14:25", "15:30", "18:00", "20:40", "21:30"],
+    'Saturday': ["06:10", "07:40", "10:00", "12:40", "14:25", "15:30", "18:00", "19:40", "20:40", "21:30"],
+    'Sunday': ["06:10", "07:40", "10:00", "12:40", "14:25", "15:30", "18:00", "19:40", "20:40", "21:30"]
+}
 
-        arrival_VietJet(BKK,CNK))= {
-            'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Monday']],
-            'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Tuesday']],
-            'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Wednesday']],
-            'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Thursday']],
-            'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Friday']],
-            'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Saturday']],
-            'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Sunday']]
-        }
+arrival_VietJet_BKK_to_CNX = {
+    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) for time in departure_VietJet_BKK_to_CNX['Sunday']]
+}
 
-        flights = []
-        for element_details1.day , departure_list in departure_VietJet(BKK,CNX).items():
-            arrival_list = arrival_VietJet(BKK,CNX)[element_details1.day]
-            for i in range(len(departure_list)):
-                id_Vietjet = vietjet_flight_ids[departure_list[i]]
-                flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                                element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, id_Vietjet, element_details1.status[0])
+flights = []
+for element_details1.day , departure_list in departure_VietJet_BKK_to_CNX.items():
+    arrival_list = arrival_VietJet_BKK_to_CNX[element_details1.day]
+    for i in range(len(departure_list)):
+        id_Vietjet = vietjet_flight_ids[departure_list[i]]
+        flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
+                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, id_Vietjet, element_details1.status[0])
 ################## BangkokAir Bangkok to Chiang Mai##########################
 i = "01:20"
 # Time Revival
