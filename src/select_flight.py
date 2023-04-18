@@ -545,11 +545,11 @@ for element_details1.day , departure_list in departure_ThaiSmileAir_BKK_to_UTH.i
         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
                         element_details1.arrival_airport[6], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
 ###################################################################################################################################################################################################################################################################################
-my_trip = Trip()
+# my_trip = Trip()
 
-#test trip
-depart,arrival,travelday = input().split("/")
-print(my_trip.search_flight(depart,arrival,travelday))
+# #test trip
+# depart,arrival,travelday = input().split("/")
+# print(my_trip.search_flight(depart,arrival,travelday))
 
 #test airline
 # airline,day = input().split("/")
