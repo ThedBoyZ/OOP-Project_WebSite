@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useState } from "react";
-import Register from "./Register";
-import Profile from "./Profile";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -11,7 +9,7 @@ export default function Login() {
 
   const login = (event) => {
     event.preventDefault(); // prevent form submission behavior
-
+    
     axios.post("http://127.0.0.1:8000/login", {
       
         email:`${email}`,
@@ -29,9 +27,6 @@ export default function Login() {
         return alert("wrong username or password")
       }
     })
-    // .catch(err => {
-    //   console.log(err.response.data);
-    // })
     
   }
 

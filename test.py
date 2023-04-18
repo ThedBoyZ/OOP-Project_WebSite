@@ -34,9 +34,11 @@ class User:
                 return self._status
             else:
                 print("wrong username or password")
+                self._status = "guest"
                 return self._status
         except KeyError or str(System.read_data()[f"{self.__email}"]) != self.__password:
             print("wrong username or password")
+            self._status = "guest"
             return self._status        
 
 
@@ -54,7 +56,7 @@ class User:
 
         if self.__email not in str(list(System.read_data().keys())) and self.__password == self.__confirm_password:
             System.write_data(self.__customer_detail)
-            return "register complete"
+            return "Register complete"
         elif self.__password != self.__confirm_password:
             return "Password Not Match"
         else:
@@ -86,3 +88,5 @@ p1 = User("Ping", "uuux", "pinguuux@", "1234", "Customer")
 p1.refund()
 
 p1.login("pinguuux@", "1234")
+
+

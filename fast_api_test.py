@@ -6,6 +6,17 @@ from test import User
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+from datetime import datetime
+from copy import deepcopy
+from fastapi import FastAPI
+from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from airport_and_airline import AirlineCollection,AirportCollection
+from select_flight import Trip
+
+
+my_trip = Trip()
+
 app = FastAPI()
 
 p1 = User()
@@ -64,12 +75,17 @@ async def register(data : dict) -> dict:
     __password = data["password"]
     __confirm_password = data["confirm_password"]
     __country = data["country"]
-    return {
+
+    if(p1.register(__name, __surname, __email, __password, __confirm_password, __country) == "Register complete"):
+        return {
             "register_status":p1.register(__name, __surname, __email, __password, __confirm_password, __country),
             "registered_data":p1.see_data(__email)
-            # "register_status": p1.register(data["name"],data["surname"],data["email"],data["password"],data["confirm_password"],data["country"]),
-            # "registered_data": {p1.see_data(data["email"])}
-            }
+        }
+    else:
+        return {
+            "register_status":p1.register(__name, __surname, __email, __password, __confirm_password, __country),
+            "registered_data":None
+        }
 
 @app.post("/user_data", tags=["UserData"])
 async def user_data(data : dict) -> dict:
@@ -80,6 +96,17 @@ async def user_data(data : dict) -> dict:
 @app.get("/user/{id}")
 async def put_id(id):
     return f"Hello {id}"
+
+# @app.post("/search_flight", tags=["search flight api"])
+# async def search_airline(depart,arrival,travelday):
+#     search_flight = my_trip.search_flight(depart,arrival,travelday)
+#     return {"status": search_flight}
+
+
+@app.post("/search_flight", tags=["search flight api"])
+async def search_airline(data : dict):
+    search_flight = my_trip.search_flight(data["depart"],data["arrival"],data["travelday"])
+    return {"status": search_flight}
 
 # @app.post("/refund", tags=["Refund"])
 # async def refund():

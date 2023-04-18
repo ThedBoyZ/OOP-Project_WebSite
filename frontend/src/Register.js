@@ -25,7 +25,15 @@ export default function Register() {
   
       })
       .then(res => {
-        console.log(res.data);
+        console.log(res.data["register_status"]);
+        if(res.data["register_status"] === "Register complete"){
+          // navigate("/Login")
+          return alert("Welcome!!")
+        }
+        else if(res.data["register_status"] === "Already registered"){
+            alert("Sorry but this email was already taken")
+        }
+        
       })
       .catch(err => {
         console.log(err.response.data);
@@ -36,6 +44,10 @@ export default function Register() {
       return alert("Password doesn't match")
     }
     
+  }
+
+  const login = (event) =>{
+    navigate('/login')
   }
 
   return (
@@ -50,23 +62,26 @@ export default function Register() {
             <option value="Ms">Ms</option>
           </select><br/>
 
-          <label for="fname">Name :</label><br/>
+          <label>Name :</label><br/>
           <input type="text" id="fname" name="fname" placeholder="Firstname" onChange={(e) => setName(e.target.value)}/><br/>
 
-          <label for="sname">Surname :</label><br/>
+          <label>Surname :</label><br/>
           <input type="text" id="sname" name="sname" placeholder="Surname" onChange={(e) => setSurname(e.target.value)}/><br/>
 
-          <label for="email">Enter your Email:</label><br/>
+          <label>Enter your Email:</label><br/>
           <input type="email" id="email" name="email" placeholder="Example@gmail.com" onChange={(e) => setEmail(e.target.value)}/><br/>
 
-          <label for="password">Enter your Password:</label><br/>
-          <input type="password" id="password" name="password1" placeholder="password" onChange={(e) => setPassword(e.target.value)}/><br/>
-          <input type="password" id="password" name="password2" placeholder="confirm password" onChange={(e) => setConfirm_password(e.target.value)}/>
+          <label>Enter your Password:</label><br/>
+          <input type="password" name="password1" placeholder="password" onChange={(e) => setPassword(e.target.value)}/><br/>
+          <input type="password" name="password2" placeholder="confirm password" onChange={(e) => setConfirm_password(e.target.value)}/><br/>
 
           <label>Country</label>
-          <input type="text" placeholder="country" onChange={(e) => setCountry(e.target.value)}/>
+          <input type="text" placeholder="country" onChange={(e) => setCountry(e.target.value)}/><br/>
 
-          <button type="submit" onClick={register}>Register</button>
+          <button type="submit" onClick={register}>Proceed</button><br/>
+
+          <label>Already have an account?</label><br/>
+          <button type="submit" onClick={login}>Login</button><br/>
         </form>
       </div>
     </>
