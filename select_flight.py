@@ -16,16 +16,16 @@ airline_coll.add_airline("Nok Air"          , "images/airlines/nok_air.png")
 
 flights = []
 
-class Trip(list):
+class Trip():
 
     @staticmethod
     def search_flight(departure, arrival, day):
         matching_flights = []
         for flight in Flight.all_flight:
-            if departure == flight[2] and arrival == flight[5] and day == flight[1] :
+            if departure == flight["departure_airport"] and arrival == flight["arrival_airport"] and day == flight["day"] :
                 matching_flights.append(flight)
-                print(flight)
-        print("\n")
+        #         print(flight)
+        # print("\n")
         return matching_flights
     
     @staticmethod
@@ -34,9 +34,10 @@ class Trip(list):
         for flight in Flight.all_flight:
             if airline_name == flight[0] and day == flight[1] :
                 matching_airlines.append(flight)
-                print(flight)
-        print("\n")
+        #         print(flight)
+        # print("\n")
         return matching_airlines
+
     
     # def search_airline(self, airline_name, day):
     #     matching_flights = []
@@ -50,8 +51,8 @@ class Trip(list):
     
 class Flight:
    
-    all_flight = Trip() #only select Trip
-    def __init__(self, airline, day, departure_airport, departure_day, departure_time, arrival_airport, arrival_day, arrival_time, baggage , refund, id, status) -> None:
+    all_flight = []
+    def __init__(self, airline, day, departure_airport, departure_day, departure_time, arrival_airport, arrival_day, arrival_time, baggage , refund, reschedule, id, status) -> None:
         self.airline = airline
         self.day = day
         self.departure_airport = departure_airport
@@ -62,6 +63,7 @@ class Flight:
         self.arrival_time = arrival_time
         self.baggage = baggage
         self.refund = refund
+        self.reschedule = reschedule
         self.id = id
         self.status = status
         self.airline = airline
@@ -77,11 +79,30 @@ class Flight:
         self.detail.append(arrival_time)
         self.detail.append(baggage)
         self.detail.append(refund)
+        self.detail.append(reschedule)
         self.detail.append(id)
-        self.all_flight.append(self.detail)
+        self.detail = self.get_flight_detail()
 
+        Flight.all_flight.append(self.detail)
+    
+    def get_flight_detail(self):
+        return {
+            "flight_id": self.id,
+            "airline_name": self.airline,
+            "day": self.day,
+            "departure_date": self.departure_day,
+            "departure_time": self.departure_time,
+            "arrival_date": self.arrival_day,
+            "arrival_time": self.arrival_time,
+            "departure_airport": self.departure_airport,
+            "arrival_airport": self.arrival_airport,
+            "cabin_baggage": self.baggage,
+            "refund": self.refund,
+            "reschedule": self.reschedule,
+            "status": self.status
+        }
 class Element_Details_Flight:
-    def __init__(self, day, departure_airport, arrival_airport, id_Vietjet, id_AirAsia, id_Smile_Air, id_Bangkok, baggage, refund, status):
+    def __init__(self, day, departure_airport, arrival_airport, id_Vietjet, id_AirAsia, id_Smile_Air, id_Bangkok, baggage, refund, reschedule, status):
         self.day = day
         self.departure_airport = departure_airport
         self.arrival_airport = arrival_airport
@@ -91,6 +112,7 @@ class Element_Details_Flight:
         self.id_Bangkok = id_Bangkok
         self.baggage = baggage
         self.refund = refund
+        self.reschedule = reschedule
         self.status = status
 # ,"CEI","KKC","KBV","UBP","NST","URT","KOP"
 element_details1 = Element_Details_Flight(
@@ -103,6 +125,7 @@ element_details1 = Element_Details_Flight(
     ["PG215","PG217","PG219","PG223"],
     [7,20],
     False,
+    True,
     ["One Way","Round Trip"]
 )
 
@@ -146,7 +169,7 @@ for element_details1.day , departure_list in departure_VietJet_BKK_to_CNX.items(
     for i in range(len(departure_list)):
         id_Vietjet = vietjet_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, id_Vietjet, element_details1.status[0])
+                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
 ################## BangkokAir Bangkok to Chiang Mai##########################
 i = "01:20"
 # Time Revival
@@ -179,7 +202,7 @@ for element_details1.day , departure_list in departure_Bangkok_BKK_to_CNX.items(
     for i in range(len(departure_list)):
         id_Bangkok = bangkok_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[1].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, id_Bangkok, element_details1.status[0])    
+                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Bangkok, element_details1.status[0])    
 ################## ThaiSmileAir Bangkok to Chiang Mai##########################
 i = "01:20"
 # Time Revival
@@ -213,7 +236,7 @@ for element_details1.day , departure_list in departure_ThaiSmileAir_BKK_to_CNX.i
     for i in range(len(departure_list)):
         id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, id_Smile_Air, element_details1.status[0])
+                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
 ################## AirAsia Bangkok to Chiang Mai##########################
 i = "01:10"
 # Time Revival
@@ -246,7 +269,7 @@ for element_details1.day , departure_list in departure_AirAsia_BKK_to_CNX.items(
     for i in range(len(departure_list)):
         id_AirAsia = airasia_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[3].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, id_AirAsia, element_details1.status[0])
+                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_AirAsia, element_details1.status[0])
 ################## Vietjet Bangkok to HKT Phuket ##########################
 vietjet_flight_ids = {
     "07:00": "VZ314",  "08:00": "VZ317",  "08:10": "VZ300",  "08:55": "VZ315",  "10:45": "VZ300",  "10:50": "VZ304", "12:45": "VZ305", "12:55": "VZ310",
@@ -281,7 +304,7 @@ for element_details1.day , departure_list in departure_VietJet_BKK_to_HKT.items(
     for i in range(len(departure_list)):
         id_Vietjet = vietjet_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, id_Vietjet, element_details1.status[0])
+                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
                 
 ################## BangkokAir Bangkok to HKT Phuket##########################
 i = "01:20"
@@ -315,7 +338,7 @@ for element_details1.day , departure_list in departure_Bangkok_BKK_to_HKT.items(
     for i in range(len(departure_list)):
         id_Bangkok = bangkok_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[1].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, id_Bangkok, element_details1.status[0])    
+                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Bangkok, element_details1.status[0])    
 ################## ThaiSmileAir Bangkok to HKT Phuket##########################
 i = "01:20"
 # Time Revival
@@ -349,7 +372,7 @@ for element_details1.day , departure_list in departure_ThaiSmileAir_BKK_to_HKT.i
     for i in range(len(departure_list)):
         id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, id_Smile_Air, element_details1.status[0])
+                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
 ################## AirAsia Bangkok to HKT Phuket##########################
 i = "01:10"
 # Time Revival
@@ -382,7 +405,7 @@ for element_details1.day , departure_list in departure_AirAsia_BKK_to_HKT.items(
     for i in range(len(departure_list)):
         id_AirAsia = airasia_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[3].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, id_AirAsia, element_details1.status[0])
+                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_AirAsia, element_details1.status[0])
 ################## Vietjet Bangkok to HDY HadYai ##########################
 vietjet_flight_ids = {
     "07:10": "VZ320",  "11:15": "VZ324", "17:00": "VZ326",  "19:55" : "VZ328"
@@ -416,7 +439,7 @@ for element_details1.day , departure_list in departure_VietJet_BKK_to_HDY.items(
     for i in range(len(departure_list)):
         id_Vietjet = vietjet_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[5], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, id_Vietjet, element_details1.status[0])
+                        element_details1.arrival_airport[5], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
                  
 ################## ThaiSmileAir Bangkok to HDY HadYai ##########################
 # Time Revival 1.30 - 1.25
@@ -450,7 +473,7 @@ for element_details1.day , departure_list in departure_ThaiSmileAir_BKK_to_HDY.i
     for i in range(len(departure_list)):
         id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[5], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, id_Smile_Air, element_details1.status[0])
+                        element_details1.arrival_airport[5], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
         
 ################## Vietjet Bangkok to UTH Udon ##########################
 vietjet_flight_ids = {
@@ -485,7 +508,7 @@ for element_details1.day , departure_list in departure_VietJet_BKK_to_UTH.items(
     for i in range(len(departure_list)):
         id_Vietjet = vietjet_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[6], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, id_Vietjet, element_details1.status[0])
+                        element_details1.arrival_airport[6], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
 
 ################## ThaiSmileAir Bangkok to UTH Udon ##########################
 i = "01:10"
@@ -520,7 +543,7 @@ for element_details1.day , departure_list in departure_ThaiSmileAir_BKK_to_UTH.i
     for i in range(len(departure_list)):
         id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[6], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, id_Smile_Air, element_details1.status[0])
+                        element_details1.arrival_airport[6], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
 ###################################################################################################################################################################################################################################################################################
 my_trip = Trip()
 
