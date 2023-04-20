@@ -46,7 +46,7 @@ class PriceDetailCollection:
         self.details = []
 
     def add_price_detail(self, traveler: Traveler):
-        detail = PriceDetail(traveler['type_person'], traveler['baggage_weight'])
+        detail = PriceDetail(traveler.type_person, traveler.baggage_weight)
         self.details.append(detail)
 
     def total_price(self) -> int:
