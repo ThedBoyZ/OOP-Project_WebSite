@@ -44,8 +44,12 @@ class BookingSystem:
         return self.__booking_date
     
     @property
-    def status(self):
-        return self.__status
+    def total_price(self):
+        return self.__total_price
+    
+    @total_price.setter
+    def total_price(self, total_price):
+        self.__total_price = total_price
     
     def add_ons_baggage(self, index, baggage_weight):
         self.__travelers[index]['baggage_weight'] += baggage_weight
@@ -53,10 +57,13 @@ class BookingSystem:
 
     def booking(self, trip, contact, travelers):
         # Set trip, contact info, and traveler info
-        self.__trip = trip.get_trip_detail()
-        self.__contact_info = contact.get_contact_info()
+        self.__trip = trip
+        self.__contact_info = contact
+        
         for traveler in travelers:
-            self.__travelers.append(traveler.get_traveler_info())
+            # Check if the traveler already exists in the booking
+            if traveler not in self.__travelers:
+                self.__travelers.append(traveler)
 
         # Generate booking ID and calculate total price
         self.__booking_id = self.generate_booking_id()
@@ -69,31 +76,35 @@ class BookingSystem:
         # Return the booking ID
         return self.booking_id
     
-    # def get_booking_detail(self):
-    #     return {
-    #         "booking_id": self.booking_id,
-    #         "booking_date": self.booking_date,
-    #         "trip_detail": self.__trip,
-    #         "contact_info": self.__contact_info,
-    #         "travelers": self.__travelers,
-    #         "total_price": self.__total_price,
-    #         "status": self.status
-    #     }
-    
     def get_booking_by_id(self, id):
         if id == self.booking_id:
+
+            traveler_details = []
+            for traveler in self.__travelers:
+                traveler_details.append(traveler.get_traveler_info())
+
             return {
+                "booking_id": self.booking_id,
+                "booking_date": self.booking_date,
+                "trip_detail": self.__trip,
+                "contact_info": self.__contact_info.get_contact_info(),
+                "travelers": traveler_details,
+                "total_price": self.total_price,
+                "status": self.__status
+            }
+        else:
+            raise ValueError("Invalid booking ID.")
+        
+    def __str__(self):
+        return {
                 "booking_id": self.booking_id,
                 "booking_date": self.booking_date,
                 "trip_detail": self.__trip,
                 "contact_info": self.__contact_info,
                 "travelers": self.travelers,
                 "total_price": self.__total_price,
-                "status": self.status
+                "status": self.__status
             }
-        else:
-            raise ValueError("Invalid booking ID.")
-
 
 if __name__ == "__main__":
     
@@ -117,4 +128,3 @@ if __name__ == "__main__":
     # booking
     booking1 = BookingSystem()
     print(booking1.booking(trip1, contact, travelers))
-    print(booking1.get_booking_detail())

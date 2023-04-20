@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from booking import *
+from total_price import *
 from flight import Flight, Trip
 from account import Traveler, Contact
 
@@ -19,7 +20,7 @@ booking_system = BookingSystem()
 
 @app.post("/booking", tags=["booking"])
 async def booking(data: dict):
-    trip = trip1
+    trip = trip1.get_trip_detail()
     contact = Contact(data['contact_name'], data['contact_surname'], data['contact_title'], data['contact_email'], data['contact_mobile'])
     travelers = []
     
@@ -32,17 +33,23 @@ async def booking(data: dict):
     return {"booking_id": booking_id}
 
 
-@app.get("/booking", tags=["booking"])
+@app.get("/booking/get_booking/{booking_id}", tags=["booking"])
 async def booking(booking_id: str):
     booking = booking_system.get_booking_by_id(booking_id)
     return booking
 
 
-@app.put("/booking/{id}", tags=["booking"])
+@app.put("/booking/add_ons/{id}", tags=["booking"])
 def add_ons_baggage(id: str, traveler_index: int, baggage_weight: int):
     booking = booking_system.get_booking_by_id(id)
     if booking:
-        booking_system.travelers[traveler_index]['baggage_weight'] += baggage_weight
-        return {"travelers_info_update": booking['travelers']}
+        booking_system.travelers[traveler_index].baggage_weight = baggage_weight
+        price_detail = PriceDetailCollection()
+        for traveler in booking_system.travelers:
+            price_detail.add_price_detail(traveler)
+        new_price = price_detail.total_price()
+        booking_system.total_price = new_price
+        return {"travelers_info_update": booking_system.travelers[traveler_index].get_traveler_info()}
     else:
         return {"status": "error", "message": "Booking not found"}
+    

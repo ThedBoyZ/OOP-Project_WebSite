@@ -58,7 +58,7 @@ class Trip:
     def add_flight(self, flight):
         if flight in self.__flights:
             raise ValueError("Flight already exist")
-        self.__flights.append(flight.get_flight_detail())
+        self.__flights.append(flight)
         self.__count_flight += 1
         self.__transit = self.__count_flight - 1
     
@@ -71,9 +71,12 @@ class Trip:
         return self.__transit
     
     def get_trip_detail(self):
+        flight_details = []
+        for flight in self.__flights:
+            flight_details.append(flight.get_flight_detail())
         return {
             "transit": self.transit,
-            "flight_detail": self.flights
+            "flight_details": flight_details
         }
 
 if __name__ == "__main__":
@@ -84,3 +87,4 @@ if __name__ == "__main__":
     trip1 = Trip()
     trip1.add_flight(flight1)
     trip1.add_flight(flight2)
+    print(trip1.get_trip_detail())
