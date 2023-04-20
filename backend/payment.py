@@ -5,6 +5,10 @@ from datetime import datetime
 class PromoCode:
     def __init__(self):
         self.__promo_code_list = []
+
+    @property
+    def promo_code_list(self):
+        return self.__promo_code_list
     
     def add_promo_code(self, code):
         if code in self.__promo_code_list:
@@ -23,9 +27,6 @@ class PromoCode:
             return True
         else:
             return False
-
-    def __str__(self):
-        return f"{self.__promo_code_list}"
     
 class Payment:
 
