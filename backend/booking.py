@@ -127,4 +127,3 @@ if __name__ == "__main__":
 
     # booking
     booking1 = BookingSystem()
-    print(booking1.booking(trip1, contact, travelers))
