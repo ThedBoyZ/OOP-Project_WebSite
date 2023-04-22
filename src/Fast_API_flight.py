@@ -17,3 +17,4 @@ async def root() -> dict:
 async def search_airline(depart,arrival,travelday):
     search_flight = my_trip.search_flight(depart,arrival,travelday)
     return {"status": search_flight}
+
