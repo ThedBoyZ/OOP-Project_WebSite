@@ -101,6 +101,7 @@ class Flight:
             "reschedule": self.reschedule,
             "status": self.status
         }
+    
 class Element_Details_Flight:
     def __init__(self, day, departure_airport, arrival_airport, id_Vietjet, id_AirAsia, id_Smile_Air, id_Bangkok, baggage, refund, reschedule, status):
         self.day = day
@@ -117,8 +118,8 @@ class Element_Details_Flight:
 # ,"CEI","KKC","KBV","UBP","NST","URT","KOP"
 element_details1 = Element_Details_Flight(
     ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    ["BKK","CNX","HKT","HDY","UTH"],
-    ["BKK","CNX","HKT","HDY","UTH"],
+    ["BKK","CNX","HKT","HDY","UTH","UBP"],
+    ["BKK","CNX","HKT","HDY","UTH","UBP"],
     ["VZ100","VZ102","VZ104","VZ106","VZ110","VZ114","VZ2104","VZ2106","VZ2114","VZ118","VZ120","VZ122","VZ300","VZ305","VZ306","VZ308","VZ310","VZ312","VZ314","VZ315","VZ316","VZ317","VZ2300","VZ2304"],
     ["FD4100","FD4104","FD4106"],
     ["WE102","WE104","WE108","WE110","WE120","WE164"],
@@ -169,7 +170,7 @@ for element_details1.day , departure_list in departure_VietJet_BKK_to_CNX.items(
     for i in range(len(departure_list)):
         id_Vietjet = vietjet_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
+                        element_details1.arrival_airport[1], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
 ################## BangkokAir Bangkok to Chiang Mai##########################
 i = "01:20"
 # Time Revival
@@ -202,7 +203,7 @@ for element_details1.day , departure_list in departure_Bangkok_BKK_to_CNX.items(
     for i in range(len(departure_list)):
         id_Bangkok = bangkok_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[1].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Bangkok, element_details1.status[0])    
+                        element_details1.arrival_airport[1], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Bangkok, element_details1.status[0])    
 ################## ThaiSmileAir Bangkok to Chiang Mai##########################
 i = "01:20"
 # Time Revival
@@ -236,7 +237,7 @@ for element_details1.day , departure_list in departure_ThaiSmileAir_BKK_to_CNX.i
     for i in range(len(departure_list)):
         id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
+                        element_details1.arrival_airport[1], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
 ################## AirAsia Bangkok to Chiang Mai##########################
 i = "01:10"
 # Time Revival
@@ -269,7 +270,7 @@ for element_details1.day , departure_list in departure_AirAsia_BKK_to_CNX.items(
     for i in range(len(departure_list)):
         id_AirAsia = airasia_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[3].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_AirAsia, element_details1.status[0])
+                        element_details1.arrival_airport[1], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_AirAsia, element_details1.status[0])
 ################## Vietjet Bangkok to HKT Phuket ##########################
 vietjet_flight_ids = {
     "07:00": "VZ314",  "08:00": "VZ317",  "08:10": "VZ300",  "08:55": "VZ315",  "10:45": "VZ300",  "10:50": "VZ304", "12:45": "VZ305", "12:55": "VZ310",
@@ -304,7 +305,7 @@ for element_details1.day , departure_list in departure_VietJet_BKK_to_HKT.items(
     for i in range(len(departure_list)):
         id_Vietjet = vietjet_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
+                        element_details1.arrival_airport[2], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
                 
 ################## BangkokAir Bangkok to HKT Phuket##########################
 i = "01:20"
@@ -338,7 +339,7 @@ for element_details1.day , departure_list in departure_Bangkok_BKK_to_HKT.items(
     for i in range(len(departure_list)):
         id_Bangkok = bangkok_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[1].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Bangkok, element_details1.status[0])    
+                        element_details1.arrival_airport[2], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Bangkok, element_details1.status[0])    
 ################## ThaiSmileAir Bangkok to HKT Phuket##########################
 i = "01:20"
 # Time Revival
@@ -372,7 +373,7 @@ for element_details1.day , departure_list in departure_ThaiSmileAir_BKK_to_HKT.i
     for i in range(len(departure_list)):
         id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
+                        element_details1.arrival_airport[2], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
 ################## AirAsia Bangkok to HKT Phuket##########################
 i = "01:10"
 # Time Revival
@@ -405,7 +406,7 @@ for element_details1.day , departure_list in departure_AirAsia_BKK_to_HKT.items(
     for i in range(len(departure_list)):
         id_AirAsia = airasia_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[3].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_AirAsia, element_details1.status[0])
+                        element_details1.arrival_airport[2], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_AirAsia, element_details1.status[0])
 ################## Vietjet Bangkok to HDY HadYai ##########################
 vietjet_flight_ids = {
     "07:10": "VZ320",  "11:15": "VZ324", "17:00": "VZ326",  "19:55" : "VZ328"
@@ -439,7 +440,7 @@ for element_details1.day , departure_list in departure_VietJet_BKK_to_HDY.items(
     for i in range(len(departure_list)):
         id_Vietjet = vietjet_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[5], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
+                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
                  
 ################## ThaiSmileAir Bangkok to HDY HadYai ##########################
 # Time Revival 1.30 - 1.25
@@ -473,7 +474,7 @@ for element_details1.day , departure_list in departure_ThaiSmileAir_BKK_to_HDY.i
     for i in range(len(departure_list)):
         id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[5], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
+                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
         
 ################## Vietjet Bangkok to UTH Udon ##########################
 vietjet_flight_ids = {
@@ -508,7 +509,7 @@ for element_details1.day , departure_list in departure_VietJet_BKK_to_UTH.items(
     for i in range(len(departure_list)):
         id_Vietjet = vietjet_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[6], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
+                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
 
 ################## ThaiSmileAir Bangkok to UTH Udon ##########################
 i = "01:10"
@@ -543,7 +544,7 @@ for element_details1.day , departure_list in departure_ThaiSmileAir_BKK_to_UTH.i
     for i in range(len(departure_list)):
         id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[6], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
+                        element_details1.arrival_airport[4], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
         
 ################## Vietjet Bangkok to Ubon Ratchathani ##########################
 vietjet_flight_ids = {
@@ -578,7 +579,7 @@ for element_details1.day , departure_list in departure_VietJet_BKK_to_UBP.items(
     for i in range(len(departure_list)):
         id_Vietjet = vietjet_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[7], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
+                        element_details1.arrival_airport[5], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
                 
 ################## ThaiSmileAir Bangkok to Ubon Ratchathani ##########################
 i = "01:10"
@@ -613,7 +614,7 @@ for element_details1.day , departure_list in departure_ThaiSmileAir_BKK_to_UBP.i
     for i in range(len(departure_list)):
         id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[7], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
+                        element_details1.arrival_airport[5], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
         
 ################## Vietjet Chiang Mai to BKK ##########################
 i = "01:20"
@@ -647,23 +648,23 @@ for element_details1.day , departure_list in departure_VietJet_CNX_to_BKK.items(
     arrival_list = arrival_VietJet_CNX_to_BKK[element_details1.day]
     for i in range(len(departure_list)):
         id_Vietjet = vietjet_flight_ids[departure_list[i]]
-        flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[3], None, departure_list[i],\
+        flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[1], None, departure_list[i],\
                         element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
 ################## BangkokAir Chiang Mai to Bangkok ##########################
 i = "01:25"
 # Time Revival
 bangkok_flight_ids = {
-    "10:00": "PG216", "12:00": "PG224", "14:35": "PG218", "20:00": "PG220"
+    "10:10": "PG216", "12:00": "PG224", "20:00": "PG220"
 }
 
 departure_Bangkok_CNX_to_BKK = {
-    'Monday': ["10:00", "12:00", "20:00"],
-    'Tuesday': ["10:00", "12:00", "20:00"],
-    'Wednesday': ["10:00", "14:35", "20:00"],
-    'Thursday': ["10:00", "12:00", "20:00"],
-    'Friday': ["10:00", "14:35", "20:00"],
-    'Saturday': ["10:00", "12:00", "20:00"],
-    'Sunday': ["10:00", "14:35", "20:00"]
+    'Monday': [],
+    'Tuesday': ["10:10", "12:00", "20:00"],
+    'Wednesday': [],
+    'Thursday': [],
+    'Friday': [],
+    'Saturday': [],
+    'Sunday': []
 }
 
 arrival_Bangkok_CNX_to_BKK = {
@@ -680,23 +681,23 @@ for element_details1.day , departure_list in departure_Bangkok_CNX_to_BKK.items(
     arrival_list = arrival_Bangkok_CNX_to_BKK[element_details1.day]
     for i in range(len(departure_list)):
         id_Bangkok = bangkok_flight_ids[departure_list[i]]
-        flight = Flight(airline_coll.airlines[1].name, element_details1.day, element_details1.departure_airport[3], None, departure_list[i],\
+        flight = Flight(airline_coll.airlines[1].name, element_details1.day, element_details1.departure_airport[1], None, departure_list[i],\
                         element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Bangkok, element_details1.status[0])    
 ################## ThaiSmileAir  Chiang Mai to Bangkok ##########################
-i = "01:20"
+i = "01:25"
 # Time Revival
 ThaiSmileAir_flight_ids = {
-    "09:25": "WE103", "11:00": "WE109", "12:20": "WE105", "15:30": "WE111", "17:05": "WE165", "21:10": "WE121"
+    "09:25": "WE103", "12:20": "WE105", "13:50": "WE109", "15:30": "WE111", "17:05": "WE165", "21:10": "WE121"
 }
 
 departure_ThaiSmileAir_CNX_to_BKK = {
-    'Monday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-    'Tuesday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-    'Wednesday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-    'Thursday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-    'Friday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-    'Saturday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-    'Sunday': ["09:25","11:00","12:20","15:30","17:05","21:10"]
+    'Monday': ["09:25","12:20","13:50","15:30","17:05","21:10"],
+    'Tuesday': ["09:25","12:20","13:50","15:30","17:05","21:10"],
+    'Wednesday': ["09:25","12:20","13:50","15:30","17:05","21:10"],
+    'Thursday': ["09:25","12:20","13:50","15:30","17:05","21:10"],
+    'Friday': ["09:25","12:20","13:50","15:30","17:05","21:10"],
+    'Saturday': ["09:25","12:20","13:50","15:30","17:05","21:10"],
+    'Sunday': ["09:25","12:20","13:50","15:30","17:05","21:10"]
 }
 
 
@@ -715,15 +716,15 @@ for element_details1.day , departure_list in departure_ThaiSmileAir_CNX_to_BKK.i
     for i in range(len(departure_list)):
         id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
+                        element_details1.arrival_airport[1], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
 ################## AirAsia  Chiang Mai to Bangkok ##########################
-i = "01:15"
+i = "01:20"
 # Time Revival
 airasia_flight_ids = {
     "08:30": "FD4101", "13:10": "FD4105",  "17:40": "FD4107"
 }
 
-departure_AirAsia_BKK_to_CNX = {
+departure_AirAsia_CNX_to_BKK = {
     'Monday': [],
     'Tuesday': ["08:30", "13:10","17:40"],
     'Wednesday': ["08:30", "13:10","17:40"],
@@ -733,157 +734,396 @@ departure_AirAsia_BKK_to_CNX = {
     'Sunday': ["13:10","17:40"]
 }
 
-arrival_AirAsia_BKK_to_CNX = {
-    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Monday']],
-    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Tuesday']],
-    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Wednesday']],
-    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Thursday']],
-    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Friday']],
-    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Saturday']],
-    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Sunday']]
+arrival_AirAsia_CNX_to_BKK = {
+    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_CNX_to_BKK['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_CNX_to_BKK['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_CNX_to_BKK['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_CNX_to_BKK['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_CNX_to_BKK['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_CNX_to_BKK['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_CNX_to_BKK['Sunday']]
 }
 
-for element_details1.day , departure_list in departure_AirAsia_BKK_to_CNX.items():
-    arrival_list = arrival_AirAsia_BKK_to_CNX[element_details1.day]
+for element_details1.day , departure_list in departure_AirAsia_CNX_to_BKK.items():
+    arrival_list = arrival_AirAsia_CNX_to_BKK[element_details1.day]
     for i in range(len(departure_list)):
         id_AirAsia = airasia_flight_ids[departure_list[i]]
         flight = Flight(airline_coll.airlines[3].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-                        element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_AirAsia, element_details1.status[0])
-##########################################################################################################################################################################################################################
-# ################## Vietjet HKT Phuket to BKK ##########################
-# i = "01:25"
-# # Time Revival
-# vietjet_flight_ids = {
-#     "08:00": "VZ315", "08:55": "VZ317",  "12:45": "VZ305", "13:00": "VZ2303",  "15:55": "VZ2301",
-#     "17:30": "VZ307", "20:15": "VZ2305", "22:00": "VZ309"
-# }
+                        element_details1.arrival_airport[1], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_AirAsia, element_details1.status[0])
+        
+################## Vietjet HKT Phuket to BKK ##########################
+i = "01:25"
+# Time Revival
+vietjet_flight_ids = {
+    "08:00": "VZ317", "08:55": "VZ315", "09:55": "VZ301",  "12:45": "VZ305", "13:00": "VZ2303",  "15:55": "VZ2301",
+    "16:25": "VZ303", "17:30": "VZ308", "18:00": "VZ307",  "20:15": "VZ2305", "22:00": "VZ309"
+}
 
-# departure_VietJet_HKT_to_BKK = {
-#     'Monday': ["08:00", "08:55", "12:45", "13:00", "15:55", "17:30", "20:15","22:00"],
-#     'Tuesday': ["08:00", "08:55", "12:45", "13:00", "15:55", "17:30", "20:15","22:00"],
-#     'Wednesday': ["08:00", "08:55", "12:45", "13:00", "15:55", "17:30", "20:15","22:00"],
-#     'Thursday': ["06:35", "08:00", "09:30", "11:50", "14:40", "16:15", "17:20", "19:45","22:25"],
-#     'Friday': ["06:35", "08:00", "09:30", "11:50", "13:55", "14:40", "16:15", "17:20", "19:45","22:25"],
-#     'Saturday': ["06:35", "08:00", "09:30", "11:50", "14:40", "16:15", "17:20", "19:45","22:25"],
-#     'Sunday': ["06:35", "08:00", "09:30", "13:55", "14:40", "16:15", "17:20", "19:45","22:25"]
-# }
+departure_VietJet_HKT_to_BKK = {
+    'Monday': ["08:00", "08:55", "12:45", "13:00", "15:55", "17:30", "20:15","22:00"],
+    'Tuesday': ["08:00", "08:55", "09:55", "12:45", "13:00", "15:55", "16:25", "18:00", "20:15","22:00"],
+    'Wednesday': ["08:00", "08:55", "12:45", "13:00", "15:55", "17:30", "20:15","22:00"],
+    'Thursday': ["08:00", "08:55", "09:55", "12:45", "13:00", "15:55", "16:25", "18:00", "20:15","22:00"],
+    'Friday': ["08:00", "08:55", "09:55", "12:45", "13:00", "15:55", "16:25", "18:00", "20:15","22:00"],
+    'Saturday': ["08:00", "08:55", "09:55", "12:45", "13:00", "15:55", "16:25", "18:00", "20:15","22:00"],
+    'Sunday': ["08:00", "08:55", "12:45", "13:00", "15:55", "17:30", "20:15","22:00"]
+}
 
-# arrival_VietJet_HKT_to_BKK = {
-#    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Monday']],
-#     'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Tuesday']],
-#     'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Wednesday']],
-#     'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Thursday']],
-#     'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Friday']],
-#     'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Saturday']],
-#     'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Sunday']]
-# }
+arrival_VietJet_HKT_to_BKK = {
+    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HKT_to_BKK['Sunday']]
+}
 
-# for element_details1.day , departure_list in departure_VietJet_HKT_to_BKK.items():
-#     arrival_list = arrival_VietJet_HKT_to_BKK[element_details1.day]
-#     for i in range(len(departure_list)):
-#         id_Vietjet = vietjet_flight_ids[departure_list[i]]
-#         flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[3], None, departure_list[i],\
-#                         element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
-# ################## BangkokAir HKT Phuket to Bangkok ##########################
-# i = "01:25"
-# # Time Revival
-# bangkok_flight_ids = {
-#     "10:00": "PG216", "12:00": "PG224", "14:35": "PG218", "20:00": "PG220"
-# }
+for element_details1.day , departure_list in departure_VietJet_HKT_to_BKK.items():
+    arrival_list = arrival_VietJet_HKT_to_BKK[element_details1.day]
+    for i in range(len(departure_list)):
+        id_Vietjet = vietjet_flight_ids[departure_list[i]]
+        flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[2], None, departure_list[i],\
+                        element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
+################## BangkokAir HKT Phuket to Bangkok ##########################
+i = "01:30"
+# Time Revival
+bangkok_flight_ids = {
+    "10:20": "PG272", "12:50": "PG276", "14:50": "PG274", "17:30": "PG284", "19:10": "PG278", "21:55": "PG280"
+}
 
-# departure_Bangkok_CNX_to_BKK = {
-#     'Monday': ["10:00", "12:00", "20:00"],
-#     'Tuesday': ["10:00", "12:00", "20:00"],
-#     'Wednesday': ["10:00", "14:35", "20:00"],
-#     'Thursday': ["10:00", "12:00", "20:00"],
-#     'Friday': ["10:00", "14:35", "20:00"],
-#     'Saturday': ["10:00", "12:00", "20:00"],
-#     'Sunday': ["10:00", "14:35", "20:00"]
-# }
+departure_Bangkok_HKT_to_BKK = {
+    'Monday': ["19:10", "21:55"],
+    'Tuesday': ["10:20", "12:50", "14:50", "17:30", "19:10", "21:55"],
+    'Wednesday': ["10:20", "12:50", "19:10", "21:55"],
+    'Thursday': ["10:20", "12:50", "14:50", "17:30", "19:10", "21:55"],
+    'Friday': ["10:20", "12:50", "14:50", "19:10", "21:55"],
+    'Saturday': ["10:20", "12:50", "14:50", "17:30", "19:10", "21:55"],
+    'Sunday': []
+}
 
-# arrival_Bangkok_CNX_to_BKK = {
-#     'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_CNX_to_BKK['Monday']],
-#     'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_CNX_to_BKK['Tuesday']],
-#     'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_CNX_to_BKK['Wednesday']],
-#     'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_CNX_to_BKK['Thursday']],
-#     'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_CNX_to_BKK['Friday']],
-#     'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_CNX_to_BKK['Saturday']],
-#     'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_CNX_to_BKK['Sunday']]
-# }
+arrival_Bangkok_HKT_to_BKK = {
+    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HKT_to_BKK['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HKT_to_BKK['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HKT_to_BKK['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HKT_to_BKK['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HKT_to_BKK['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HKT_to_BKK['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HKT_to_BKK['Sunday']]
+}
 
-# for element_details1.day , departure_list in departure_Bangkok_CNX_to_BKK.items():
-#     arrival_list = arrival_Bangkok_CNX_to_BKK[element_details1.day]
-#     for i in range(len(departure_list)):
-#         id_Bangkok = bangkok_flight_ids[departure_list[i]]
-#         flight = Flight(airline_coll.airlines[1].name, element_details1.day, element_details1.departure_airport[3], None, departure_list[i],\
-#                         element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Bangkok, element_details1.status[0])    
-# ################## ThaiSmileAir HKT Phuket to Bangkok ##########################
-# i = "01:20"
-# # Time Revival
-# ThaiSmileAir_flight_ids = {
-#     "09:25": "WE103", "11:00": "WE109", "12:20": "WE105", "15:30": "WE111", "17:05": "WE165", "21:10": "WE121"
-# }
+for element_details1.day , departure_list in departure_Bangkok_HKT_to_BKK.items():
+    arrival_list = arrival_Bangkok_HKT_to_BKK[element_details1.day]
+    for i in range(len(departure_list)):
+        id_Bangkok = bangkok_flight_ids[departure_list[i]]
+        flight = Flight(airline_coll.airlines[1].name, element_details1.day, element_details1.departure_airport[2], None, departure_list[i],\
+                        element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Bangkok, element_details1.status[0])
+    
+################## ThaiSmileAir HKT Phuket to Bangkok ##########################
+i = "01:35"
+# Time Revival
+ThaiSmileAir_flight_ids = {
+    "09:40": "WE290", "10:15": "WE202", "12:35": "WE286", "13:00": "WE204", "16:05": "WE216", "17:05": "WE284", "19:40": "WE218", "21:20": "WE212"
+}
 
-# departure_ThaiSmileAir_CNX_to_BKK = {
-#     'Monday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-#     'Tuesday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-#     'Wednesday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-#     'Thursday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-#     'Friday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-#     'Saturday': ["09:25","11:00","12:20","15:30","17:05","21:10"],
-#     'Sunday': ["09:25","11:00","12:20","15:30","17:05","21:10"]
-# }
+departure_ThaiSmileAir_HKT_to_BKK = {
+    'Monday': [],
+    'Tuesday': ["21:20"],
+    'Wednesday': [],
+    'Thursday': [],
+    'Friday': ["09:40","10:15","12:35","16:05","21:20"],
+    'Saturday': ["09:40","10:15","12:35","13:00","16:05","21:20"],
+    'Sunday': ["09:40","17:05","19:40","21:20"]
+}
 
 
-# arrival_ThaiSmileAir_CNX_to_BKK = {
-#     'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_CNX_to_BKK['Monday']],
-#     'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_CNX_to_BKK['Tuesday']],
-#     'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_CNX_to_BKK['Wednesday']],
-#     'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_CNX_to_BKK['Thursday']],
-#     'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_CNX_to_BKK['Friday']],
-#     'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_CNX_to_BKK['Saturday']],
-#     'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_CNX_to_BKK['Sunday']]
-# }
+arrival_ThaiSmileAir_HKT_to_BKK = {
+    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HKT_to_BKK['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HKT_to_BKK['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HKT_to_BKK['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HKT_to_BKK['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HKT_to_BKK['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HKT_to_BKK['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HKT_to_BKK['Sunday']]
+}
 
-# for element_details1.day , departure_list in departure_ThaiSmileAir_CNX_to_BKK.items():
-#     arrival_list = arrival_ThaiSmileAir_CNX_to_BKK[element_details1.day]
-#     for i in range(len(departure_list)):
-#         id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
-#         flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-#                         element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
-# ################## AirAsia HKT Phuket to Bangkok ##########################
+for element_details1.day , departure_list in departure_ThaiSmileAir_HKT_to_BKK.items():
+    arrival_list = arrival_ThaiSmileAir_HKT_to_BKK[element_details1.day]
+    for i in range(len(departure_list)):
+        id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
+        flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[2], None, departure_list[i],\
+                        element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
+################## AirAsia HKT Phuket to Bangkok ##########################
+i = "01:15"
+# Time Revival
+airasia_flight_ids = {
+    "08:35": "FD4113", "10:00": "FD4111", "12:05": "FD4111",  "22:25": "FD4125"
+}
+
+departure_AirAsia_HKT_to_BKK = {
+    'Monday': ["08:35","12:05","22:25"],
+    'Tuesday': ["08:35","22:25"],
+    'Wednesday': ["08:35","12:05","22:25"],
+    'Thursday': ["08:35","10:00","22:25"],
+    'Friday': ["08:35","10:00","22:25"],
+    'Saturday': ["08:35","10:00","22:25"],
+    'Sunday': ["08:35","10:00","22:25"]
+}
+
+arrival_AirAsia_HKT_to_BKK = {
+    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Sunday']]
+}
+
+for element_details1.day , departure_list in departure_AirAsia_HKT_to_BKK.items():
+    arrival_list = arrival_AirAsia_HKT_to_BKK[element_details1.day]
+    for i in range(len(departure_list)):
+        id_AirAsia = airasia_flight_ids[departure_list[i]]
+        flight = Flight(airline_coll.airlines[3].name, element_details1.day, element_details1.departure_airport[2], None, departure_list[i],\
+                        element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_AirAsia, element_details1.status[0])
+################## Vietjet HDY HatYai to BKK ##########################
+i = "01:30"
+# Time Revival
+vietjet_flight_ids = {
+    "09:15": "VZ321", "13:15": "VZ325", "18:55": "VZ327", "21:50": "VZ329"
+}
+
+departure_VietJet_HDY_to_BKK = {
+    'Monday': ["09:15", "13:15", "18:55", "21:50"],
+    'Tuesday': ["09:15", "13:15", "18:55", "21:50"],
+    'Wednesday': ["09:15", "13:15", "18:55", "21:50"],
+    'Thursday': ["09:15", "13:15", "18:55", "21:50"],
+    'Friday': ["09:15", "13:15", "18:55", "21:50"],
+    'Saturday': ["09:15", "13:15", "18:55", "21:50"],
+    'Sunday': ["09:15", "13:15", "18:55", "21:50"]
+}
+
+arrival_VietJet_HDY_to_BKK = {
+    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HDY_to_BKK['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HDY_to_BKK['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HDY_to_BKK['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HDY_to_BKK['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HDY_to_BKK['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HDY_to_BKK['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_HDY_to_BKK['Sunday']]
+}
+
+for element_details1.day , departure_list in departure_VietJet_HDY_to_BKK.items():
+    arrival_list = arrival_VietJet_HDY_to_BKK[element_details1.day]
+    for i in range(len(departure_list)):
+        id_Vietjet = vietjet_flight_ids[departure_list[i]]
+        flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[3], None, departure_list[i],\
+                        element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
+################## BangkokAir HDY HatYai to Bangkok ##########################
+i = "01:25"
+# Time Revival
+bangkok_flight_ids = {
+    "10:20": "PG272", "12:50": "PG276", "14:50": "PG274", "17:30": "PG284", "19:10": "PG278", "21:55": "PG280"
+}
+
+departure_Bangkok_HDY_to_BKK = {
+    'Monday': [],
+    'Tuesday': [],
+    'Wednesday': [],
+    'Thursday': [],
+    'Friday': [],
+    'Saturday': [],
+    'Sunday': []
+}
+
+arrival_Bangkok_HDY_to_BKK = {
+    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HDY_to_BKK['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HDY_to_BKK['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HDY_to_BKK['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HDY_to_BKK['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HDY_to_BKK['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HDY_to_BKK['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Bangkok_HDY_to_BKK['Sunday']]
+}
+
+for element_details1.day , departure_list in departure_Bangkok_HDY_to_BKK.items():
+    arrival_list = arrival_Bangkok_HDY_to_BKK[element_details1.day]
+    for i in range(len(departure_list)):
+        id_Bangkok = bangkok_flight_ids[departure_list[i]]
+        flight = Flight(airline_coll.airlines[1].name, element_details1.day, element_details1.departure_airport[3], None, departure_list[i],\
+                        element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Bangkok, element_details1.status[0])    
+################## ThaiSmileAir HDY HatYai to Bangkok ##########################
+i = "01:35"
+# Time Revival
+ThaiSmileAir_flight_ids = {
+    "09:05": "WE260", "14:40": "WE264", "20:40": "WE268"
+}
+
+departure_ThaiSmileAir_HDY_to_BKK = {
+    'Monday': ["09:05","14:40","20:40"],
+    'Tuesday': ["09:05","20:40"],
+    'Wednesday': ["20:40"],
+    'Thursday': ["09:05","14:40","20:40"],
+    'Friday': ["09:05","14:40","20:40"],
+    'Saturday': ["09:05","14:40","20:40"],
+    'Sunday': ["09:05","14:40","20:40"]
+}
+
+
+arrival_ThaiSmileAir_HDY_to_BKK = {
+    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HDY_to_BKK['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HDY_to_BKK['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HDY_to_BKK['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HDY_to_BKK['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HDY_to_BKK['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HDY_to_BKK['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_HDY_to_BKK['Sunday']]
+}
+
+for element_details1.day , departure_list in departure_ThaiSmileAir_HDY_to_BKK.items():
+    arrival_list = arrival_ThaiSmileAir_HDY_to_BKK[element_details1.day]
+    for i in range(len(departure_list)):
+        id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
+        flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[3], None, departure_list[i],\
+                        element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
+################## AirAsia HDY HatYai to Bangkok ##########################
 # i = "01:15"
 # # Time Revival
 # airasia_flight_ids = {
-#     "08:30": "FD4101", "13:10": "FD4105",  "17:40": "FD4107"
+#     "08:35": "FD4113", "10:00": "FD4111", "12:05": "FD4111",  "22:25": "FD4125"
 # }
 
-# departure_AirAsia_BKK_to_CNX = {
-#     'Monday': [],
-#     'Tuesday': ["08:30", "13:10","17:40"],
-#     'Wednesday': ["08:30", "13:10","17:40"],
-#     'Thursday': ["13:10","17:40"],
-#     'Friday': ["13:10","17:40"],
-#     'Saturday': ["08:30", "13:10","17:40"],
-#     'Sunday': ["13:10","17:40"]
+# departure_AirAsia_HKT_to_BKK = {
+#     'Monday': ["08:35","12:05","22:25"],
+#     'Tuesday': ["08:35","22:25"],
+#     'Wednesday': ["08:35","12:05","22:25"],
+#     'Thursday': ["08:35","10:00","22:25"],
+#     'Friday': ["08:35","10:00","22:25"],
+#     'Saturday': ["08:35","10:00","22:25"],
+#     'Sunday': ["08:35","10:00","22:25"]
 # }
 
-# arrival_AirAsia_BKK_to_CNX = {
-#     'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Monday']],
-#     'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Tuesday']],
-#     'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Wednesday']],
-#     'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Thursday']],
-#     'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Friday']],
-#     'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Saturday']],
-#     'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_BKK_to_CNX['Sunday']]
+# arrival_AirAsia_HKT_to_BKK = {
+#     'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Monday']],
+#     'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Tuesday']],
+#     'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Wednesday']],
+#     'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Thursday']],
+#     'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Friday']],
+#     'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Saturday']],
+#     'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_AirAsia_HKT_to_BKK['Sunday']]
 # }
 
-# for element_details1.day , departure_list in departure_AirAsia_BKK_to_CNX.items():
-#     arrival_list = arrival_AirAsia_BKK_to_CNX[element_details1.day]
+# for element_details1.day , departure_list in departure_AirAsia_HKT_to_BKK.items():
+#     arrival_list = arrival_AirAsia_HKT_to_BKK[element_details1.day]
 #     for i in range(len(departure_list)):
 #         id_AirAsia = airasia_flight_ids[departure_list[i]]
-#         flight = Flight(airline_coll.airlines[3].name, element_details1.day, element_details1.departure_airport[0], None, departure_list[i],\
-#                         element_details1.arrival_airport[3], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_AirAsia, element_details1.status[0])
+#         flight = Flight(airline_coll.airlines[3].name, element_details1.day, element_details1.departure_airport[4], None, departure_list[i],\
+#                         element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_AirAsia, element_details1.status[0])
+
+      
+################## Vietjet UTH Udon Thani to BKK ##########################
+i = "01:10"
+# Time Revival
+vietjet_flight_ids = {
+    "10:10": "VZ201",  "15:10": "VZ205", "17:10": "VZ203",  "21:15": "VZ209"
+}
+
+departure_VietJet_UTH_to_BKK = {
+    'Monday': ["10:10", "15:10", "17:10"],
+    'Tuesday': ["10:10", "15:10", "17:10", "21:15"],
+    'Wednesday': ["10:10", "15:10", "17:10"],
+    'Thursday': ["10:10", "15:10", "17:10","21:15"],
+    'Friday': ["10:10", "15:10", "17:10"],
+    'Saturday': ["10:10", "15:10", "17:10", "21:15"],
+    'Sunday': ["10:10", "15:10", "17:10"]
+}
+
+arrival_VietJet_UTH_to_BKK = {
+   'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_UTH_to_BKK['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_UTH_to_BKK['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_UTH_to_BKK['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_UTH_to_BKK['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_UTH_to_BKK['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_UTH_to_BKK['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_VietJet_UTH_to_BKK['Sunday']]
+}
+
+for element_details1.day , departure_list in departure_VietJet_UTH_to_BKK.items():
+    arrival_list = arrival_VietJet_UTH_to_BKK[element_details1.day]
+    for i in range(len(departure_list)):
+        id_Vietjet = vietjet_flight_ids[departure_list[i]]
+        flight = Flight(airline_coll.airlines[0].name, element_details1.day, element_details1.departure_airport[4], None, departure_list[i],\
+                        element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[0], element_details1.refund, element_details1.reschedule, id_Vietjet, element_details1.status[0])
+################## BangkokAir UTH Udon Thani to Bangkok ##########################
+i = "02:20"
+# Time Revival
+Nokair_flight_ids = {
+    "10:10": "PG216", "12:00": "PG224", "20:00": "PG220"
+}
+
+departure_Nokair_UTH_to_BKK = {
+    'Monday': [],
+    'Tuesday': [],
+    'Wednesday': [],
+    'Thursday': [],
+    'Friday': [],
+    'Saturday': [],
+    'Sunday': []
+}
+
+arrival_Nokair_UTH_to_BKK = {
+    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Nokair_UTH_to_BKK['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Nokair_UTH_to_BKK['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Nokair_UTH_to_BKK['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Nokair_UTH_to_BKK['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Nokair_UTH_to_BKK['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Nokair_UTH_to_BKK['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_Nokair_UTH_to_BKK['Sunday']]
+}
+
+for element_details1.day , departure_list in departure_Nokair_UTH_to_BKK.items():
+    arrival_list = arrival_Nokair_UTH_to_BKK[element_details1.day]
+    for i in range(len(departure_list)):
+        id_Nokair = Nokair_flight_ids[departure_list[i]]
+        flight = Flight(airline_coll.airlines[4].name, element_details1.day, element_details1.departure_airport[4], None, departure_list[i],\
+                        element_details1.arrival_airport[0], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Nokair, element_details1.status[0])    
+################## ThaiSmileAir UTH Udon Thani to Bangkok ##########################
+i = "01:10"
+# Time Revival
+ThaiSmileAir_flight_ids = {
+    "08:40": "WE3", "13:55": "WE5", "16:15": "WE7", "19:35": "WE9"
+}
+
+departure_ThaiSmileAir_UTH_to_BKK = {
+    'Monday': ["08:40","13:55","16:15","19:35"],
+    'Tuesday': ["08:40","13:55","16:15","19:35"],
+    'Wednesday': ["08:40","13:55","16:15","19:35"],
+    'Thursday': [],
+    'Friday': ["08:40","13:55","16:15","19:35"],
+    'Saturday': ["08:40","13:55","16:15","19:35"],
+    'Sunday': ["08:40","13:55","16:15","19:35"]
+}
+
+
+arrival_ThaiSmileAir_UTH_to_BKK = {
+    'Monday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_UTH_to_BKK['Monday']],
+    'Tuesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_UTH_to_BKK['Tuesday']],
+    'Wednesday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_UTH_to_BKK['Wednesday']],
+    'Thursday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_UTH_to_BKK['Thursday']],
+    'Friday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_UTH_to_BKK['Friday']],
+    'Saturday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_UTH_to_BKK['Saturday']],
+    'Sunday': [str(int(time[:2])+int(i[:2])).zfill(2)+":"+str(int(time[3:])+int(i[3:])).zfill(2) if int(time[3:])+int(i[3:]) < 60 else str((int(time[:2])+int(i[:2])+60//60)%24).zfill(2)+":"+str((int(time[3:])+int(i[3:]))%60).zfill(2) for time in departure_ThaiSmileAir_UTH_to_BKK['Sunday']]
+}
+
+for element_details1.day , departure_list in departure_ThaiSmileAir_UTH_to_BKK.items():
+    arrival_list = arrival_ThaiSmileAir_UTH_to_BKK[element_details1.day]
+    for i in range(len(departure_list)):
+        id_Smile_Air = ThaiSmileAir_flight_ids[departure_list[i]]
+        flight = Flight(airline_coll.airlines[2].name, element_details1.day, element_details1.departure_airport[4], None, departure_list[i],\
+                        element_details1.arrival_airport[1], None, arrival_list[i], element_details1.baggage[1], element_details1.refund, element_details1.reschedule, id_Smile_Air, element_details1.status[0])
+
+        
+##########################################################################################################################################################################################################################
 # my_trip = Trip()
 
 # #test trip
