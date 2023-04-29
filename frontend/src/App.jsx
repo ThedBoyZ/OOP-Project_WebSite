@@ -5,12 +5,12 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Profile from './Profile';
 import Register from './Register';
-import Homepage from './homepage';
+import Homepage from './Homepage';
 import Promotion from './Promotion';
-import Show_flight from './show_flight';
+import Show_flight from './Show_flight';
 import Order from './Order';
 import Payment from './Payment'
-import Add_flight from './Add_flight.jsx';
+import Add_flight from './Add_flight';
 
 function App(){
   return (
