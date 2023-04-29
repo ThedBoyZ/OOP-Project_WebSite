@@ -1,16 +1,19 @@
-import {React, useState} from "react";
-// import { useNavigate } from "react-router-dom";
+import {React, useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import Show_flight from "./show_flight";
+export {respond_data}
+
+var respond_data = []
 
 export default function Homepage() {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [day, setDay] = useState("monday")
     const [from, setFrom] = useState("")
     const [to, setTo] = useState("")
 
     const search = (event) => {
         event.preventDefault();
+        
         
         axios.post("http://127.0.0.1:8000/search_flight", {
             travelday:`${day}`,
@@ -19,10 +22,18 @@ export default function Homepage() {
         })
         .then(res => {
             //const data = res.data
-            console.log(res.data);
-            // Show_flight(res.data)
-            // navigate('/show_flight')
+            let data = res.data
+            respond_data = data["respond"]
+            
+            
+            navigate('/show_flight')
           })
+
+        // axios.get("http://127.0.0.1:8000/test")
+        // .then(res => {
+        //     let respond_data = res.data
+        //     console.log(respond_data["respond"][0])
+        // })working
 
     }
 
@@ -35,24 +46,30 @@ export default function Homepage() {
             <a href="/login">Sign in</a>
             <a href="/profile">Profile</a>
             <a href="/promotion">Promotion</a>
-
+            <a href="/order">Order</a>
+            <a href="/payment">Payment</a>
+            <a href="/checkout">Checkout</a>
+            
             <form>
-                <label>Day</label>
-                <select id="day" onChange={(e) => setDay(e.target.value)}>
-                    <option value="Monday">Monday</option>
-                    <option value="Tuesday">Tuesday</option>
-                    <option value="Wednesday">Wednesday</option>
-                    <option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option>
-                    <option value="Saturday">Saturday</option>
-                    <option value="Sunday">Sunday</option>
-                </select>
+                <fieldset>
+                    <legend>Search flight</legend>
+                    <label>Day</label>
+                    <select id="day" onChange={(e) => setDay(e.target.value)}>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select>
 
-                <input type="text" id="from" placeholder="From" onChange={(e) => setFrom(e.target.value)}/>
-                <label>To</label>
-                <input type="text" id="to" placeholder="To" onChange={(e) => setTo(e.target.value)}/>
+                    <input type="text" id="from" placeholder="From" onChange={(e) => setFrom(e.target.value)}/>
+                    <label>To</label>
+                    <input type="text" id="to" placeholder="To" onChange={(e) => setTo(e.target.value)}/>
 
-                <input type="submit" onClick={search}/>
+                    <input type="submit" onClick={search}/>
+                </fieldset>
             </form>
         </div>
 
