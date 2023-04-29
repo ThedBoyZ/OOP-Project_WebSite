@@ -27,7 +27,7 @@ class User:
                 print("login complete")
                 #User.set_user_detail(self.__email, self.__name, "Customer")
                 self._email = self.__email
-                if self.__email == "admin":
+                if self.__email == "admin@":
                     self._status = "admin"
                 else:
                     self._status = "customer"
@@ -54,13 +54,18 @@ class User:
 
         self.__customer_detail.extend([self.__name, self.__surname, self.__email, self.__password, self.__country])
 
-        if self.__email not in str(list(System.read_data().keys())) and self.__password == self.__confirm_password:
+        if self.__email == 'root@' or self.__email == 'admin@':
+            return "Invalid"
+        elif self.__email not in str(list(System.read_data().keys())) and self.__password == self.__confirm_password:
             System.write_data(self.__customer_detail)
+            print(self.__customer_detail)
+            
             return "Register complete"
+        elif self.__email in str(list(System.read_data().keys())) and self.__password == self.__confirm_password:
+            return "Already registered"
         elif self.__password != self.__confirm_password:
             return "Password Not Match"
-        else:
-            return "Already registered"
+        
 
     def __str__(self):
         return self.__customer_detail
@@ -83,10 +88,5 @@ class User:
     
         
 
-p1 = User("Ping", "uuux", "pinguuux@", "1234", "Customer")
-
-p1.refund()
-
-p1.login("pinguuux@", "1234")
-
-
+#p1 = User("Ping", "uuux", "pinguuux@", "1234", "Customer")
+p1 = User()

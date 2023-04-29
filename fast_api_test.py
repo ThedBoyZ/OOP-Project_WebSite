@@ -14,6 +14,8 @@ from dataclasses import dataclass
 from airport_and_airline import AirlineCollection,AirportCollection
 from select_flight import Trip
 
+from database import fetch_one_todo, create, update_todo, testDB
+
 
 my_trip = Trip()
 
@@ -45,15 +47,6 @@ def read_root():
 async def read_root():
     return System.read_data()
 
-# @app.post("/login", tags=["Login"])
-# async def login(email:dict, password:dict):
-#     login_status = p1.login(email, password)
-
-#     if(login_status=="guest"):
-#         return {"login_status":"incomplete"}
-#     elif(login_status == "customer"):
-#         return {"login_status":"complete","login_as":f"{email}"}
-
 @app.post("/login", tags=["Login"])
 async def login(body : dict) -> dict:
     email = body.get("email")
@@ -64,6 +57,8 @@ async def login(body : dict) -> dict:
         return {"login_status": "incomplete"}
     elif login_status == "customer":
         return {"login_status": "complete", "login_as": email}
+    elif login_status == "root":
+        return {"login_status:":"root"}
     
     
 
@@ -75,39 +70,42 @@ async def register(data : dict) -> dict:
     __password = data["password"]
     __confirm_password = data["confirm_password"]
     __country = data["country"]
+    print(p1.register(__name, __surname, __email, __password, __confirm_password, __country))
+    #return p1.register(__name, __surname, __email, __password, __confirm_password, __country)
 
-    if(p1.register(__name, __surname, __email, __password, __confirm_password, __country) == "Register complete"):
-        return {
-            "register_status":p1.register(__name, __surname, __email, __password, __confirm_password, __country),
-            "registered_data":p1.see_data(__email)
-        }
-    else:
-        return {
-            "register_status":p1.register(__name, __surname, __email, __password, __confirm_password, __country),
-            "registered_data":None
-        }
 
 @app.post("/user_data", tags=["UserData"])
 async def user_data(data : dict) -> dict:
-    return {"user_data":p1.see_data(data["data"])}
+    #return {"user_data":p1.see_data(data["data"])}
+    if p1.get_status() == 'admin':
+        return {"user_data":p1.see_data(data["data"])}
+    else:
+        return {"user_data":"you dont have permission"}
     #print(data["data"])
-
-
-@app.get("/user/{id}")
-async def put_id(id):
-    return f"Hello {id}"
-
-# @app.post("/search_flight", tags=["search flight api"])
-# async def search_airline(depart,arrival,travelday):
-#     search_flight = my_trip.search_flight(depart,arrival,travelday)
-#     return {"status": search_flight}
 
 
 @app.post("/search_flight", tags=["search flight api"])
 async def search_airline(data : dict):
     search_flight = my_trip.search_flight(data["depart"],data["arrival"],data["travelday"])
-    return {"status": search_flight}
+    
+    return {"respond":search_flight}
 
+@app.get("/current_status", tags=['get current status'])
+async def get_current_data():
+    __status = p1.get_status()
+    return {"status":__status} 
+
+
+
+@app.get("/test")
+async def test():
+    search_flight = my_trip.search_flight("BKK","CNX","Thursday")
+    return {"respond":search_flight}
+    #return {"respond":{"data":search_flight}}
 # @app.post("/refund", tags=["Refund"])
 # async def refund():
 
+@app.post("/testDB")
+async def get_test(data : dict):
+    
+    return data["airline"]
