@@ -13,7 +13,7 @@ export default function Register() {
 
   const register = (event) => {
     event.preventDefault(); // prevent form submission behavior
-    if(password===confirm_password){
+    if(password===confirm_password && name && email && password && confirm_password && country){
       axios.post("http://127.0.0.1:8000/register", {
         
         name:`${name}`,
@@ -33,15 +33,20 @@ export default function Register() {
         else if(res.data["register_status"] === "Already registered"){
             alert("Sorry but this email was already taken")
         }
-        
+        else if(res.data["register_status"] === "Invalid"){
+            alert("Invalid")
+        }
       })
       .catch(err => {
         console.log(err.response.data);
       })
 
     }
-    else{
+    else if(password !== confirm_password){
       return alert("Password doesn't match")
+    }
+    else{
+      return alert("Sorry but you are miss fill something")
     }
     
   }
@@ -78,10 +83,10 @@ export default function Register() {
           <label>Country</label>
           <input type="text" placeholder="country" onChange={(e) => setCountry(e.target.value)}/><br/>
 
-          <button type="submit" onClick={register}>Proceed</button><br/>
+          <button type="button" onClick={register}>Proceed</button><br/>
 
           <label>Already have an account?</label><br/>
-          <button type="submit" onClick={login}>Login</button><br/>
+          <button type="button" onClick={login}>Login</button><br/>
         </form>
       </div>
     </>
