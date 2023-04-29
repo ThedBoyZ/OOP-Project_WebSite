@@ -5,9 +5,9 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Profile from './Profile';
 import Register from './Register';
-import Homepage from './Homepage';
+import Homepage from './homepage';
 import Promotion from './Promotion';
-import Show_flight from './Show_flight';
+import Show_flight from './show_flight';
 import Order from './Order';
 import Payment from './Payment'
 import Add_flight from './Add_flight.jsx';
