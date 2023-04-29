@@ -1,6 +1,6 @@
 import {React, useState} from "react";
 import axios from "axios";
-import { respond_data as respond } from "./Homepage";
+import { respond_data as respond } from "./homepage";
 
 //console.log(respond_data["status"])
 
