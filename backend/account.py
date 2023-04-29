@@ -79,7 +79,7 @@ class Contact:
 
 
 class Traveler:
-    def __init__(self, type_person, title, gender, name, surname, dob, nationality):
+    def __init__(self, type_person, title, gender, name, surname, dob, nationality, baggage_weight):
         self.__type_person = type_person
         self.__title = title
         self.__gender = gender
@@ -87,7 +87,7 @@ class Traveler:
         self.__surname = surname
         self.__dob = dob
         self.__nationality = nationality
-        self.__baggage_weight = 0
+        self.__baggage_weight = baggage_weight
     
     @property
     def type_person(self):
@@ -96,10 +96,6 @@ class Traveler:
     @property
     def baggage_weight(self):
         return self.__baggage_weight
-    
-    @baggage_weight.setter
-    def baggage_weight(self, baggage_weight):
-        self.__baggage_weight = baggage_weight
 
     def get_traveler_info(self):
         return {

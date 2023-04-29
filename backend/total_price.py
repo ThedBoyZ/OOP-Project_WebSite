@@ -11,9 +11,9 @@ class PriceDetail:
     def _init_person_price(self, person_type: str):
         # Initialize person price based on type
         if person_type.upper() == "ADULT":
-            self.person_price = 803
+            self.person_price = 800
         elif person_type.upper() == "CHILD":
-            self.person_price = 803
+            self.person_price = 800
         elif person_type.upper() == "INFANT":
             self.person_price = 300
         else:

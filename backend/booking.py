@@ -2,12 +2,12 @@ from datetime import date, datetime
 import time
 from account import Traveler, Contact
 from total_price import PriceDetailCollection
-from flight import Flight, Trip
+from flight import Trip
 
 
 class BookingSystem:
     def __init__(self):
-        self.__booking_id = None
+        self.__airpaz_code = None
         self.__booking_date = None
         self.__trip = None
         self.__travelers = []
@@ -18,7 +18,7 @@ class BookingSystem:
     @staticmethod
     def generate_booking_id():
         timestamp = int(time.time())
-        return f"BK{timestamp}"
+        return timestamp
 
     @staticmethod
     def calculate_total_price(travelers):
@@ -28,8 +28,8 @@ class BookingSystem:
         return price_collection.total_price()
     
     @property
-    def booking_id(self):
-        return self.__booking_id
+    def airpaz_code(self):
+        return self.__airpaz_code
     
     @property
     def travelers(self):
@@ -51,7 +51,7 @@ class BookingSystem:
     def total_price(self, total_price):
         self.__total_price = total_price
     
-    def add_ons_baggage(self, index, baggage_weight):
+    def add_ons_baggage(self, index, baggage_weight: int=0):
         self.__travelers[index]['baggage_weight'] += baggage_weight
         return self.__travelers
 
@@ -66,7 +66,7 @@ class BookingSystem:
                 self.__travelers.append(traveler)
 
         # Generate booking ID and calculate total price
-        self.__booking_id = self.generate_booking_id()
+        self.__airpaz_code = str(self.generate_booking_id())
         self.__booking_date = datetime.now().strftime("%Y-%m-%d %H:%M")
         self.__total_price = self.calculate_total_price(self.__travelers)
 
@@ -74,17 +74,17 @@ class BookingSystem:
         self.__status = "Need Payment"
 
         # Return the booking ID
-        return self.booking_id
+        return self.airpaz_code
     
     def get_booking_by_id(self, id):
-        if id == self.booking_id:
+        if id == self.airpaz_code:
 
             traveler_details = []
             for traveler in self.__travelers:
                 traveler_details.append(traveler.get_traveler_info())
 
             return {
-                "booking_id": self.booking_id,
+                "airpaz_code": self.airpaz_code,
                 "booking_date": self.booking_date,
                 "trip_detail": self.__trip,
                 "contact_info": self.__contact_info.get_contact_info(),
@@ -93,29 +93,28 @@ class BookingSystem:
                 "status": self.__status
             }
         else:
-            raise ValueError("Invalid booking ID.")
+            raise ValueError("Invalid airpaz code.")
         
     def __str__(self):
+        traveler_details = []
+        for traveler in self.__travelers:
+            traveler_details.append(traveler.get_traveler_info())
+
         return {
-                "booking_id": self.booking_id,
-                "booking_date": self.booking_date,
-                "trip_detail": self.__trip,
-                "contact_info": self.__contact_info,
-                "travelers": self.travelers,
-                "total_price": self.__total_price,
-                "status": self.__status
-            }
+            "airpaz_code": self.airpaz_code,
+            "booking_date": self.booking_date,
+            "trip_detail": self.__trip,
+            "contact_info": self.__contact_info.get_contact_info(),
+            "travelers": traveler_details,
+            "total_price": self.total_price,
+            "status": self.__status
+        }
 
 if __name__ == "__main__":
     
-    # flight
-    flight1 = Flight("FD3416", "DMK", "CNX", "Tuesday", "2023-03-30 05:10", "2023-03-30 06:20", "Thai AirAsia", cabin_baggage=7, refund=False, reschedule=True)
-    flight2 = Flight("VZ100", "BKK", "CNX", "Monday", "2023-03-27 10:00", "2023-03-27 12:30", "Thai Vietjet Air")
-
-    # trip
+    # selected flight
     trip1 = Trip()
-    trip1.add_flight(flight1)
-    # trip1.add_flight(flight2)
+    my_trip = trip1.search_flight('BKK', 'CNX', 'Monday')
 
     contact = Contact("Tanathip", "Pona", "Mr.", "petch@gmail.com", "0800687960")
 
@@ -127,3 +126,4 @@ if __name__ == "__main__":
 
     # booking
     booking1 = BookingSystem()
+    print(booking1.booking(my_trip, contact, travelers))
