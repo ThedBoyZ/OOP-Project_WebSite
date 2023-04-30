@@ -11,6 +11,7 @@ import Show_flight from './show_flight';
 import Order from './Order';
 import Payment from './Payment'
 import Add_flight from './Add_flight';
+import Checkout from './Checkout';
 
 function App(){
   return (
@@ -25,6 +26,7 @@ function App(){
         <Route path='/order' element = {<Order/>} />
         <Route path='/payment' element = {<Payment/>} />
         <Route path='/Add_flight' element = {<Add_flight/>}/>
+        <Route path='/checkout' element = {<Checkout/>}/>
       </Routes>
     </div>
   )

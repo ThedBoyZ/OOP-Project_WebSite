@@ -1,10 +1,15 @@
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useState } from "react";
+import { selected_value } from "./show_flight";
 
 export default function Checkout() {
   const navigate = useNavigate();
   const [airline, setAirline] = useState("");
+
+  const test = () =>{
+    console.log(selected_value['data'])
+  }
   
 
   const checkout = (event) => {
@@ -24,7 +29,8 @@ export default function Checkout() {
   return (
     <>
       <h1>Checkout</h1>
-
+      {test()}
+        
       
         
     </>
