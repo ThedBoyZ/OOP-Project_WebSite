@@ -1,4 +1,4 @@
-from datetime import date
+from system import System
 
 
 class Account:
@@ -79,7 +79,7 @@ class Contact:
 
 
 class Traveler:
-    def __init__(self, type_person, title, gender, name, surname, dob, nationality, baggage_weight):
+    def __init__(self, type_person, title, gender, name, surname, dob, nationality, baggage_weight="0"):
         self.__type_person = type_person
         self.__title = title
         self.__gender = gender
