@@ -11,21 +11,20 @@ class BookingSystem:
         self.__booking_date = None
         self.__trip = None
         self.__travelers = []
+        self.__number_of_travelers = len(self.__travelers) + 1
         self.__contact_info = None
-        self.__total_price = 0
+        self.__price_details = None
         self.__status = "In Progress"      # In Progress, Need Payment
 
     @staticmethod
-    def generate_booking_id():
+    def generate_airpaz_code():
         timestamp = int(time.time())
         return timestamp
 
     @staticmethod
-    def calculate_total_price(travelers):
-        price_collection = PriceDetailCollection()
-        for traveler in travelers:
-            price_collection.add_price_detail(traveler)
-        return price_collection.total_price()
+    def calculate_price(trip, travelers):
+        price_collection = PriceDetailCollection(trip, travelers)
+        return price_collection.get_price_details()
     
     @property
     def airpaz_code(self):
@@ -66,9 +65,9 @@ class BookingSystem:
                 self.__travelers.append(traveler)
 
         # Generate booking ID and calculate total price
-        self.__airpaz_code = str(self.generate_booking_id())
+        self.__airpaz_code = str(self.generate_airpaz_code())
         self.__booking_date = datetime.now().strftime("%Y-%m-%d %H:%M")
-        self.__total_price = self.calculate_total_price(self.__travelers)
+        self.__price_details = self.calculate_price(self.__trip, self.__travelers)
 
         # Set initial status as "Need Payment"
         self.__status = "Need Payment"
@@ -88,8 +87,9 @@ class BookingSystem:
                 "booking_date": self.booking_date,
                 "trip_detail": self.__trip,
                 "contact_info": self.__contact_info.get_contact_info(),
+                "number_of_travelers": self.__number_of_travelers,
                 "travelers": traveler_details,
-                "total_price": self.total_price,
+                "price_details": self.__price_details,
                 "status": self.__status
             }
         else:
@@ -106,7 +106,7 @@ class BookingSystem:
             "trip_detail": self.__trip,
             "contact_info": self.__contact_info.get_contact_info(),
             "travelers": traveler_details,
-            "total_price": self.total_price,
+            "price_details": self.__price_details,
             "status": self.__status
         }
 
