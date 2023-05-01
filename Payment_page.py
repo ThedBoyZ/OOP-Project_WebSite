@@ -71,3 +71,5 @@ if __name__ == '__name__':
     # print(f'Price: {promptpay.price()}')
     # print(f'Processing Fee: {promptpay.processing_fee()}')
     # print(f'Total Price: {promptpay.total_price()}')
+
+
