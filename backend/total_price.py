@@ -27,7 +27,7 @@ class PriceDetail:
         self.airline_name = airline_name
         self.person_type = person_type
         self.distance_index = self.calculate_distance_index()
-        self._init_baggage_price(baggage_weight)
+        self.baggage_weight = baggage_weight
 
     def calculate_distance_index(self) -> int:
         key = (self.departure, self.arrival)
@@ -75,25 +75,27 @@ class PriceDetail:
 
         return person_price
 
-    def _init_baggage_price(self, baggage_weight):
+    def calculate_baggage_price(self):
         # Initialize baggage price based on weight
-        if str(baggage_weight) in ["15", "20", "25", "30", "35", "40"]:
-            self.baggage_price = [
+        if str(self.baggage_weight) in ["15", "20", "25", "30", "35", "40"]:
+            baggage_price = [
                 418,    # 15 kg
                 465,    # 20 kg
                 583,    # 25 kg
                 936,    # 30 kg
                 1125,   # 35 kg
                 1407    # 40 kg
-            ][(int(baggage_weight) // 5) - 3]
-        elif str(baggage_weight) == "0":
-            self.baggage_price = 0
+            ][(int(self.baggage_weight) // 5) - 3]
+        elif str(self.baggage_weight) == "0":
+            baggage_price = 0
         else:
             raise ValueError("Invalid baggage weight.")
+        
+        return baggage_price
 
     def total_price(self) -> int:
         # Return the sum of the person and baggage prices
-        return self.calculate_person_price() + self.baggage_price
+        return self.calculate_person_price() + self.calculate_baggage_price()
 
 
 # Define a class to hold a collection of price details for multiple passengers
@@ -120,6 +122,9 @@ class PriceDetailCollection:
             if promo_code == coupon.code:
                 return self.total_price() * (100 - coupon.discount) / 100
 
+    def total_baggage_price(self) -> int:
+        return sum(detail.calculate_baggage_price() for detail in self.__details)
+
     def total_price(self) -> int:
         # Return the sum of the total prices for all price details in the collection
         return sum(detail.total_price() for detail in self.__details)
@@ -145,6 +150,7 @@ class PriceDetailCollection:
                     "Total": price_detail.calculate_person_price()
                 }
         
+        output["Baggage_price"] = self.total_baggage_price()
         output["Total_price"] = self.total_price()
         return output
 
