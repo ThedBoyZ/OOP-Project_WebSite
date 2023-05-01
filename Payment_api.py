@@ -47,3 +47,4 @@ async def new_payment(booking_id, email, password):
         if booking_id == seat_price.get_order_code():
             transaction.make_payment(seat_price.get_total_price())
     return {"Price": transaction.get_price(), "Processing Fee": transaction.get_processing_fee(), "Total_Price": transaction.get_total_price()}
+
