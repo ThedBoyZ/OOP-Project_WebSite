@@ -6,15 +6,18 @@ class Coupon:
         self.promo_period = promo_period
         self.travel_period = travel_period
     
-class CouponCollection:
+class CouponCollection: 
     def __init__(self):
         self._coupon_detail = []
 
     def add_coupon(self, coupon):
-        self._coupon_detail.append(coupon)
+        self._coupon_detail.append(vars(coupon))
 
-    def delete_coupon(self, index):
-        return self._coupon_detail.pop(index)
+    def delete_coupon(self, coupon):
+        self._coupon_detail.remove(coupon)
+    
+    def all_coupon(self):
+        return self._coupon_detail
 
     # Show All Available Promo Codes on Webpage
     def coupon_home(self, index):
@@ -36,20 +39,15 @@ if __name__ == '__main__':
     # Show All Available Promo Codes
     print('All Promo Codes:')
     print('-' * 40)
-    for index in range(0, 2):
-        print(f'Code ({index+1})')
-        for attr in coupon_list.coupon_home(index):
-            print(attr)
-        print('-' * 40)
+    # for index in range(0, 2):
+    #     print(f'Code ({index+1})')
+    #     for attr in coupon_list.coupon_home(index):
+    #         print(attr)
+    print(coupon_list.all_coupon())
 
     # Click for More Details
     selected_promo_index = int(input('Select Promo Code for More Details:\n(1)  (2)\n'))
-
     # Return Promo Code Detail to User
     print('-' * 40)
-    list_index = 0
-    for attr in coupon_list.descript_coupon_detail(selected_promo_index-1):
-        attr_name = ['Code', 'Discount', 'Description', 'Promo Period', 'Travel Period']
-        print(f'{attr_name[list_index]}: {attr}')
-        list_index+=1
+    print(coupon_list.all_coupon()[selected_promo_index - 1])
     print('-' * 40)
