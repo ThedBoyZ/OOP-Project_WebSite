@@ -20,7 +20,7 @@ export default function Login() {
       console.log(res.data);
       if(res.data["login_status"]==="complete")
       {
-        navigate("./Profile")
+        navigate("/")
       }
       else
       {
@@ -32,18 +32,6 @@ export default function Login() {
 
   const toRegister = () => {
     navigate('/Register')
-  }
-
-  const test = () => {
-    
-    let data = {
-      data:"pinguuux@"
-    }
-
-    axios.post("http://127.0.0.1:8000/user_data", data)
-    .then(res => {
-      console.log(res.data)
-    })
   }
 
   return (

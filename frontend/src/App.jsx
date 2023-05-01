@@ -13,6 +13,10 @@ import Payment from './Payment'
 import Add_flight from './Add_flight';
 import Checkout from './Checkout';
 
+import Paypal from './Paypal';
+import Promptpay from './Promptpay';
+import Visa from './Visa';
+
 function App(){
   return (
     <div className ="App">
@@ -27,6 +31,11 @@ function App(){
         <Route path='/payment' element = {<Payment/>} />
         <Route path='/Add_flight' element = {<Add_flight/>}/>
         <Route path='/checkout' element = {<Checkout/>}/>
+        <Route path='/order' element = {<Order/>}/>
+
+        <Route path='/payment/promptpay' element = {<Promptpay/>}/>
+        <Route path='/payment/paypal' element = {<Paypal/>}/>
+        <Route path='/payment/visa' element = {<Visa/>}/>
       </Routes>
     </div>
   )
