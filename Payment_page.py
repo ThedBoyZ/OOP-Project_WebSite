@@ -29,25 +29,16 @@ class Payment:
 
 
 class InternetBanking(Payment):
-    def __init__(self, bank_name, account_number):
+    def __init__(self):
         super().__init__(143)
-        self.__bank_name = bank_name
-        self.__account_number = account_number
 
 class CreditCard(Payment):
-    def __init__(self, card_number, card_holder_name, expiry_date, cvv):
+    def __init__(self):
         super().__init__(178)
-        self.card_number = card_number
-        self.card_holder_name = card_holder_name
-        self.expiry_date = expiry_date
-        self.cvv = cvv
 
 class Paypal(Payment):
-    def __init__(self, email, password):
-        super().__init__(166)
-        self.email = email
-        self.password = password       
-
+    def __init__(self):
+        super().__init__(166)    
 
 if __name__ == '__name__':
     # Test InternetBanking
