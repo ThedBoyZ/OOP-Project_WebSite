@@ -1,0 +1,1 @@
+{"admin@": {"name": "Ad", "surname": "Min", "password": "1234", "country": "Thailand"}, "alice.smith@example.com": {"name": "Alice", "surname": "Smith", "password": "password", "country": "UK"}}

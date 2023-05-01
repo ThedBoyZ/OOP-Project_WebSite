@@ -100,74 +100,86 @@ class PriceDetail:
 
 # Define a class to hold a collection of price details for multiple passengers
 class PriceDetailCollection:
-    def __init__(self, trip):
+    def __init__(self, trip, travelers):
         self.number_of_adult = 0
         self.number_of_child = 0
         self.number_of_infant = 0
         self.__trip = trip
+        self.__travelers = travelers
         self.__details = []
+        self.add_price_detail()
+        self.total_baggage_price = self.calculate_total_baggage_price(self.__details)
+        self.total_price = self.calculate_total_price(self.__details)
+        self.percent_discount = 0
 
-    def add_price_detail(self, traveler: Traveler):
-        detail = PriceDetail(self.__trip["day"], self.__trip["departure_airport"], self.__trip["arrival_airport"], self.__trip["airline_name"], traveler.type_person, traveler.baggage_weight)
-        self.__details.append(detail)
-        if detail.person_type == "Adult":
-            self.number_of_adult += 1
-        elif detail.person_type == "Child":
-            self.number_of_child += 1
-        elif detail.person_type == "Infant":
-            self.number_of_infant += 1
+    @staticmethod
+    def calculate_total_baggage_price(details) -> int:
+        return sum(detail.calculate_baggage_price() for detail in details)
+
+    @staticmethod
+    def calculate_total_price(details) -> int:
+        return sum(detail.total_price() for detail in details)
+    
+    def add_price_detail(self):
+        for traveler in self.__travelers:
+            detail = PriceDetail(self.__trip["day"], self.__trip["departure_airport"], self.__trip["arrival_airport"], self.__trip["airline_name"], traveler.type_person, traveler.baggage_weight)
+            self.__details.append(detail)
+
+            if detail.person_type == "Adult":
+                self.number_of_adult += 1
+            elif detail.person_type == "Child":
+                self.number_of_child += 1
+            elif detail.person_type == "Infant":
+                self.number_of_infant += 1
 
     def discount(self, promo_code = '0'):
         for coupon in coupon_list._coupon_detail:
             if promo_code == coupon.code:
-                return self.total_price() * (100 - coupon.discount) / 100
-
-    def total_baggage_price(self) -> int:
-        return sum(detail.calculate_baggage_price() for detail in self.__details)
-
-    def total_price(self) -> int:
-        # Return the sum of the total prices for all price details in the collection
-        return sum(detail.total_price() for detail in self.__details)
+                self.percent_discount = coupon.discount
+                self.total_price = self.total_price * (100 - coupon.discount) / 100
+                # return self.total_price * (100 - coupon.discount) / 100
 
     def get_price_details(self):
         output = {}
 
         for detail in self.__details:
-            price_detail = detail
-            if price_detail.person_type == "Adult":
+            if detail.person_type == "Adult":
                 output["Adult"] = {
                     "Number_of_Adult": self.number_of_adult,
-                    "Total": price_detail.calculate_person_price()
+                    "Total": detail.calculate_person_price()
                 }
-            if price_detail.person_type == "Child":
+            if detail.person_type == "Child":
                 output["Child"] = {
                     "Number_of_Child": self.number_of_child,
-                    "Total": price_detail.calculate_person_price()
+                    "Total": detail.calculate_person_price()
                 }
-            if price_detail.person_type == "Infant":
+            if detail.person_type == "Infant":
                 output["Infant"] = {
                     "Number_of_Infant": self.number_of_infant,
-                    "Total": price_detail.calculate_person_price()
+                    "Total": detail.calculate_person_price()
                 }
         
-        output["Baggage_price"] = self.total_baggage_price()
-        output["Total_price"] = self.total_price()
+        output["Baggage_price"] = self.total_baggage_price
+        output["Total_price"] = self.total_price
+        output["Percent_discount"] = self.percent_discount
         return output
 
 if __name__ == '__main__':
 
-    t1 = Traveler("Child", "", "Male", "Peter", "Parker", date(2007, 10, 14), "Thailand")
+    t1 = Traveler("Child", "", "Male", "Peter", "Parker", date(2007, 10, 14), "Thailand", "15")
     t2 = Traveler("Adult", "Mr.", "Female", "Pim", "Niyom", date(1999, 3, 7), "Thailand", "15")
     t3 = Traveler("Infant", "", "Male", "Angry", "Bird", date(2023, 3, 27), "Thailand")
+    travelers = []
+    travelers.append(t1)
+    travelers.append(t2)
+    travelers.append(t3)
 
     trip1 = Trip()
-    my_trip = trip1.search_flight('BKK', 'CNX', 'Friday')
+    my_trip = trip1.search_flight('BKK', 'CNX', 'Sunday')
 
-    details = PriceDetailCollection(my_trip[2])
-    details.add_price_detail(t1)
-    details.add_price_detail(t2)
-    details.add_price_detail(t3)
+    details = PriceDetailCollection(my_trip[2], travelers)
 
     # print("Total price:", details.total_price(), "bath")
-    # print(details.get_price_details())
-    print(details.discount("dc10"))
+    print(details.get_price_details())
+    details.discount("dc10")
+    print(details.get_price_details())

@@ -48,7 +48,6 @@ export default function Homepage() {
             <a href="/promotion">Promotion</a>
             <a href="/order">Order</a>
             <a href="/payment">Payment</a>
-            <a href="/checkout">Checkout</a>
             
             <form>
                 <fieldset>
@@ -74,7 +73,6 @@ export default function Homepage() {
         </div>
 
         
-
     )
     
 
