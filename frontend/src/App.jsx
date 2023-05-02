@@ -17,6 +17,8 @@ import Paypal from './Paypal';
 import Promptpay from './Promptpay';
 import Visa from './Visa';
 
+import Booking from './Booking_page';
+
 function App(){
   return (
     <div className ="App">
@@ -36,6 +38,8 @@ function App(){
         <Route path='/payment/promptpay' element = {<Promptpay/>}/>
         <Route path='/payment/paypal' element = {<Paypal/>}/>
         <Route path='/payment/visa' element = {<Visa/>}/>
+
+        <Route path='/booking' element = {<Booking/>}/>
       </Routes>
     </div>
   )

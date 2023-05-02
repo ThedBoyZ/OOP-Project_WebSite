@@ -24,11 +24,10 @@ export default function Checkout() {
   }
 
   const checkout = () =>{
-    //navigate('./payment')
-    console.log('payment')
+    navigate('/booking')
+    
   }
   
-
   
   return (
     <>

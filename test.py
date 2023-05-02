@@ -90,3 +90,4 @@ class User:
 
 #p1 = User("Ping", "uuux", "pinguuux@", "1234", "Customer")
 p1 = User()
+#print(p1.register("z",'z','z@','4','4','us'))
