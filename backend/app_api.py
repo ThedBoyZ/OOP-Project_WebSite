@@ -23,7 +23,6 @@ my_trip = trip1.search_flight('BKK', 'CNX', 'Friday')
 # booking
 booking_system = BookingSystem()
 
-
 @app.get("/", tags=['root'])
 async def root() -> dict:
     return {"Air": "Paz"}
@@ -49,8 +48,8 @@ async def add_booking(data: dict):
         travelers.append(traveler)
 
     airpaz_code = booking_system.booking(trip, contact, travelers)
-    booking_details = booking_system.get_booking_by_id(airpaz_code)
-    return {"booking_details": booking_details}
+    orders.add_booking(booking_system)
+    return {"airpaz_code": airpaz_code}
 
 @app.get("/booking/{airpaz_code}", tags=["booking"])
 async def get_booking(airpaz_code: str):
@@ -70,3 +69,10 @@ async def discount(data: dict):
     details = PriceDetailCollection(my_trip[2], travelers)
     details.discount(data['promo_code'])
     return {"Update_price_details": details.get_price_details()}
+
+# ------------------------------------ Orders ----------------------------------------
+
+@app.get("/orders/{airpaz_code}", tags=["orders"])
+async def get_booking_history(airpaz_code: str):
+    booking_details = orders.get_booking_by_id(airpaz_code)
+    return {"booking_details": booking_details}

@@ -46,6 +46,10 @@ class BookingSystem:
     def total_price(self):
         return self.__total_price
     
+    @property
+    def status(self):
+        return self.__status
+    
     @total_price.setter
     def total_price(self, total_price):
         self.__total_price = total_price
@@ -109,6 +113,21 @@ class BookingSystem:
             "price_details": self.__price_details,
             "status": self.__status
         }
+
+class Order:
+    def __init__(self):
+        self.__booking_list = []
+        
+    def add_booking(self, booking):
+        self.__booking_list.append(booking)
+
+    def get_booking_by_id(self, id):
+        for booking in self.__booking_list:
+            if id == booking.airpaz_code:
+                return booking.get_booking_by_id(id)
+
+# order
+orders = Order()
 
 if __name__ == "__main__":
     
