@@ -26,14 +26,14 @@ export default function Register() {
       })
       .then(res => {
         console.log(res.data["register_status"]);
-        if(res.data["register_status"] === "Register complete"){
-          // navigate("/Login")
+        if(res.data["data"] === "Register complete"){
+          navigate("/Login")
           return alert("Welcome!!")
         }
-        else if(res.data["register_status"] === "Already registered"){
+        else if(res.data["data"] === "Already registered"){
             alert("Sorry but this email was already taken")
         }
-        else if(res.data["register_status"] === "Invalid"){
+        else if(res.data["data"] === "Invalid"){
             alert("Invalid")
         }
       })

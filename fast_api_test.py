@@ -89,6 +89,9 @@ async def register(data : dict) -> dict:
     return {'data':p1.register(__name, __surname, __email, __password, __confirm_password, __country)}
     #return p1.register(__name, __surname, __email, __password, __confirm_password, __country)
 
+@app.get("/see_profile", tags=['see profile'])
+async def see_profile():
+    return {'profile':p1.see_profile()}
 
 @app.post("/user_data", tags=["UserData"])
 async def user_data(data : dict) -> dict:
@@ -170,25 +173,25 @@ async def new_payment(payment_method: str):
 @app.post("/internet_banking", tags=['Payment'])
 async def new_payment(data : dict):
     transaction = InternetBanking()
-    for seat_price in seat_price_list.seat_price_list:
-        if data['id'] == seat_price.get_order_code():
-            transaction.make_payment(seat_price.get_total_price())
+    for booking in orders.booking_list:
+        if data['id'] == booking.airpaz_code:
+            transaction.make_payment(booking.price_details["Total_price"])
     return {"Price": transaction.get_price(), "Processing Fee": transaction.get_processing_fee(), "Total_Price": transaction.get_total_price()}
     
 @app.post("/credit_card", tags=['Payment'])
 async def new_payment(data : dict):
-    transaction = CreditCard()
-    for seat_price in seat_price_list.seat_price_list:
-        if data['id'] == seat_price.get_order_code():
-            transaction.make_payment(seat_price.get_total_price())
+    transaction = InternetBanking()
+    for booking in orders.booking_list:
+        if data['id'] == booking.airpaz_code:
+            transaction.make_payment(booking.price_details["Total_price"])
     return {"Price": transaction.get_price(), "Processing Fee": transaction.get_processing_fee(), "Total_Price": transaction.get_total_price()}
 
 @app.post("/paypal", tags=['Payment'])
 async def new_payment(data : dict):
-    transaction = Paypal()
-    for seat_price in seat_price_list.seat_price_list:
-        if data['id'] == seat_price.get_order_code():
-            transaction.make_payment(seat_price.get_total_price())
+    transaction = InternetBanking()
+    for booking in orders.booking_list:
+        if data['id'] == booking.airpaz_code:
+            transaction.make_payment(booking.price_details["Total_price"])
     return {"Price": transaction.get_price(), "Processing Fee": transaction.get_processing_fee(), "Total_Price": transaction.get_total_price()}
 
 @app.post("/booking", tags=["booking"])
@@ -203,8 +206,7 @@ async def add_booking(data: dict):
         travelers.append(traveler)
 
     airpaz_code = booking_system.booking(trip, contact, travelers)
-    booking_details = booking_system.get_booking_by_id(airpaz_code)
-    return {"booking_details": booking_details}
+    return {"airpaz_code": airpaz_code}
 
 @app.get("/booking/{airpaz_code}", tags=["booking"])
 async def get_booking(airpaz_code: str):
@@ -223,3 +225,11 @@ async def discount(data: dict):
     details.discount(data['promo_code'])
     return {"Update_price_details": details.get_price_details()}
 
+@app.get("/orders/{airpaz_code}", tags=["orders"])
+async def get_booking_history(airpaz_code: str):
+    booking_details = orders.get_booking_by_id(airpaz_code)
+    return {"booking_details": booking_details}
+
+@app.post("/edit_account", tags=['edit account'])
+async def edit_account(name, surname, country):
+    return p1.edit_account(name, surname, country)

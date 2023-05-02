@@ -50,6 +50,7 @@ export default function Visa(){
     }, [html])
     return(
         <div>
+            <h1>Visa</h1>
             {show_price()}
             {html}<br/>
             <button type="button" onClick={() => payment_complete()}>Pay!</button>

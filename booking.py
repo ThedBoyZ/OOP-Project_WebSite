@@ -43,12 +43,16 @@ class BookingSystem:
         return self.__booking_date
     
     @property
-    def total_price(self):
+    def price_details(self):
         return self.__total_price
     
-    @total_price.setter
-    def total_price(self, total_price):
-        self.__total_price = total_price
+    @property
+    def status(self):
+        return self.__status
+    
+    @status.setter
+    def status(self, status):
+        self.__status = status
     
     def add_ons_baggage(self, index, baggage_weight: int=0):
         self.__travelers[index]['baggage_weight'] += baggage_weight
@@ -109,6 +113,25 @@ class BookingSystem:
             "price_details": self.__price_details,
             "status": self.__status
         }
+
+class Order:
+    def __init__(self):
+        self.__booking_list = []
+
+    @property
+    def booking_list(self):
+        return self.__booking_list
+        
+    def add_booking(self, booking):
+        self.__booking_list.append(booking)
+
+    def get_booking_by_id(self, id):
+        for booking in self.__booking_list:
+            if id == booking.airpaz_code:
+                return booking.get_booking_by_id(id)
+
+# order
+orders = Order()
 
 if __name__ == "__main__":
     

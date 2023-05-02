@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-
+import { data } from "./Payment";
 
 
 var respond_price = "";
@@ -28,7 +28,7 @@ export default function Promptpay(){
             respond_price = res.data['Price']
             respond_fee = res.data['Processing Fee']
             respond_total = res.data['Total_Price']
-            
+            console.log(data["price_details"])
         })
     }
 
@@ -49,6 +49,7 @@ export default function Promptpay(){
     }, [html])
     return(
         <div>
+            <h1>Promptpay Method</h1>
             {show_price()}
             {html}<br/>
             <button type="button" onClick={() => payment_complete()}>Pay!</button>

@@ -29,20 +29,13 @@ export default function Homepage() {
             navigate('/show_flight')
           })
 
-        // axios.get("http://127.0.0.1:8000/test")
-        // .then(res => {
-        //     let respond_data = res.data
-        //     console.log(respond_data["respond"][0])
-        // })working
-
     }
 
     return (
         <div>
             <h1>Homepage</h1>
             <a href="/">Airpaz</a>
-            <a href="/">Home </a>
-            <a href="/booking">Booking</a>
+            
             <a href="/login">Sign in</a>
             <a href="/profile">Profile</a>
             <a href="/promotion">Promotion</a>

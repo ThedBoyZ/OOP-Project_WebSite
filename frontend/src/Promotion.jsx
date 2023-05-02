@@ -10,34 +10,28 @@ export default function Promotion() {
         axios.get("http://127.0.0.1:8000/coupon_home")
         .then(res =>{
           respond = res.data['Data']['_coupon_detail']
-          console.log(respond.length)
+          //console.log(respond[0])
+          const data = []
+          for(let i in respond){
+            data.push(respond[i])
+            
+          }
+          console.log(data)
+          const listItems = data.map((d, index) =>
+          <ul key={index}>
+            {
+              <h5>helllo</h5>
+            }
+          </ul>);
+          return listItems
         })
-    }
-
-    const list_coupon = () =>{
-      for(let i=0; i < respond.length; i++){
-        console.log(respond[i])
-        console.log('p')
-      }
-      const data = []
-      for(let i in respond){
-        data.push(respond[i])
-      }
-    
-      const listItems = data.map((d, index) =>
-      <ul key={index}>
-        {
-          <h5>{d}</h5>
-        }
-      </ul>);
-      return listItems
     }
 
     return (
       <>
         <h1>Promotion page</h1>
+        
         {show_coupon()}
-        {list_coupon()}
       </>
     );
   }

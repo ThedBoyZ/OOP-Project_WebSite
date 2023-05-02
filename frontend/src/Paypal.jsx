@@ -3,9 +3,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 
-
-
-
 var respond_price = "";
 var respond_fee = "";
 var respond_total = "";
@@ -16,6 +13,7 @@ export default function Promptpay(){
     const [html, setHtml] = useState("")
 
     const show_price = () =>{
+        
         
 
         axios.post("http://127.0.0.1:8000/paypal", {
@@ -48,6 +46,7 @@ export default function Promptpay(){
     }, [html])
     return(
         <div>
+             <h1>Paypal Method</h1>
             {show_price()}
             {html}<br/>
             <button type="button" onClick={() => payment_complete()}>Pay!</button>

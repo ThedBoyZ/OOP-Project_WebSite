@@ -1,9 +1,13 @@
 import './App.css';
+import { useNavigate } from "react-router";
 import { React, useEffect, useState} from "react";
 import axios from "axios";
 // import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { selected_value } from './show_flight';
+export { airpaz_code }
+
+var airpaz_code 
 
 function Traveler({ travelerIndex, travelers, setTravelers }) {
 
@@ -15,6 +19,8 @@ function Traveler({ travelerIndex, travelers, setTravelers }) {
     const [dob, setDob] = useState("")
     const [nationality, setNationality] = useState("")
     const [baggage_weight, SetBaggage] = useState("")
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         const updatedTravelers = [...travelers];
@@ -63,8 +69,7 @@ function Traveler({ travelerIndex, travelers, setTravelers }) {
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="United States">United States</option>
                 </select><br />
-            </div>
-            <div className="addons">
+
                 <label>Add ons</label><br />
                 <select className="mb-2" id="baggage" onChange={(e) => SetBaggage(e.target.value)}>
                     <option value="0">No Baggage</option>
@@ -82,7 +87,7 @@ function Traveler({ travelerIndex, travelers, setTravelers }) {
 
 export default function Booking() {
     const [numTravelers, setNumTravelers] = useState(1);
-    
+    const navigate = useNavigate()
     const [title, setTitle] = useState("")
     const [name, setName] = useState("")
     const [surname, setSurname] = useState("")
@@ -94,7 +99,7 @@ export default function Booking() {
         event.preventDefault();
           
         axios.post("http://127.0.0.1:8000/booking", {
-            trip_detail: selected_value,
+            trip_detail: selected_value['data'],
             contact_name: name,
             contact_surname: surname,
             contact_title: title,
@@ -104,7 +109,8 @@ export default function Booking() {
             travelers: travelers
         })
         .then(res => {
-            console.log(res.data);
+            airpaz_code = res.data;
+            navigate('/payment')
         })
         .catch(err => {
             console.log(err);
@@ -117,26 +123,27 @@ export default function Booking() {
     }
 
     useEffect(() => {
+        
         const initialTravelers = Array(numTravelers).fill({});
         setTravelers(initialTravelers);
     }, [numTravelers])
-
+    
     return (
         <div className="App list-group-item justify-content-center align-items-center mx-auto" style={{ "width": "400px", "backgroundColor": "white", "marginTop": "15px"}}>
             <h1 className="card text-white bg-danger mb-3" styleName="max-width: 20rem;">Booking</h1>
             <div>
                 <h2>Flight Details</h2>
                 <div className="bg-light rounded mb-5">
-                    <label>Flight ID: {selected_value['flight_id']}</label><br />
-                    <label>Airline: {selected_value['airline_name']}</label><br />
-                    <label>Day: {selected_value['day']}</label><br />
-                    <label>Departure Time: {selected_value['departure_time']}</label><br />
-                    <label>Departure Airport: {selected_value['departure_airport']}</label><br />
-                    <label>Arrival Time: {selected_value['arrival_time']}</label><br />
-                    <label>Arrival Airport: {selected_value['arrival_airport']}</label><br />
-                    <label>Cabin Baggage: {selected_value['cabin_baggage']} kg</label><br />
-                    <label>Reschedule: {String(selected_value['reschedule'])}</label><br />
-                    <label>Refund: {String(selected_value['refund'])}</label><br /> 
+                    <label>Flight ID: {selected_value['data']['flight_id']}</label><br />
+                    <label>Airline: {selected_value['data']['airline_name']}</label><br />
+                    <label>Day: {selected_value['data']['day']}</label><br />
+                    <label>Departure Time: {selected_value['data']['departure_time']}</label><br />
+                    <label>Departure Airport: {selected_value['data']['departure_airport']}</label><br />
+                    <label>Arrival Time: {selected_value['data']['arrival_time']}</label><br />
+                    <label>Arrival Airport: {selected_value['data']['arrival_airport']}</label><br />
+                    <label>Cabin Baggage: {selected_value['data']['cabin_baggage']} kg</label><br />
+                    <label>Reschedule: {String(selected_value['data']['reschedule'])}</label><br />
+                    <label>Refund: {String(selected_value['data']['refund'])}</label><br /> 
                 </div>
                 <h2>Contact Details</h2>
                 <form className="bg-light rounded mb-5">

@@ -1,6 +1,7 @@
 from Check_orders_for_customer import Booking
 from Check_orders_for_customer import BookingCollection
 from Check_orders_for_customer import booking_list
+from booking import *
 from datetime import date
 
 class Payment:
@@ -23,8 +24,8 @@ class Payment:
         self.__total_price = self.__price + self.__processing_fee
 
     def payment_completed(self, booking_id):
-        booking = booking_list.get_booking_by_order_code(booking_id)
-        booking.set_status('Completed')
+        booking = orders.get_booking_by_id(booking_id)
+        booking.status('Completed')
         return booking.status()
 
 
