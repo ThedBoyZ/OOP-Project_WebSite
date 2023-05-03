@@ -118,8 +118,10 @@ export default function Booking() {
     }
 
     function addTraveler() {
-        setNumTravelers(numTravelers + 1);
-        setTravelers([...travelers, {}]);
+        if (numTravelers < 6) {
+            setNumTravelers(numTravelers + 1);
+            setTravelers([...travelers, {}]);
+        }
     }
 
     useEffect(() => {

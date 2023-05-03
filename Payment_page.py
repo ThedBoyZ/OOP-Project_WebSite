@@ -1,6 +1,3 @@
-from Check_orders_for_customer import Booking
-from Check_orders_for_customer import BookingCollection
-from Check_orders_for_customer import booking_list
 from booking import *
 from datetime import date
 
@@ -10,26 +7,33 @@ class Payment:
         self.__total_price = 0
         self.__processing_fee = processing_fee
 
-    def get_price(self):
+    @property
+    def price(self):
         return self.__price
     
-    def get_processing_fee(self):
+    @price.setter
+    def price(self, price):
+        self.__price = price
+    
+    @property
+    def processing_fee(self):
         return self.__processing_fee
     
-    def get_total_price(self):
+    @property
+    def total_price(self):
         return self.__total_price
     
-    def make_payment(self, price):
-        self.__price = price
+    def make_payment(self):
         self.__total_price = self.__price + self.__processing_fee
 
-    def payment_completed(self, booking_id):
-        booking = orders.get_booking_by_id(booking_id)
+    def payment_completed(self, order, booking_id):
+        booking = order.get_booking_by_id(booking_id)
         booking.status('Completed')
         return booking.status()
 
 
-class InternetBanking(Payment):
+
+class Promptpay(Payment):
     def __init__(self):
         super().__init__(143)
 
@@ -63,4 +67,3 @@ if __name__ == '__name__':
     # print(f'Price: {promptpay.price()}')
     # print(f'Processing Fee: {promptpay.processing_fee()}')
     # print(f'Total Price: {promptpay.total_price()}')
-

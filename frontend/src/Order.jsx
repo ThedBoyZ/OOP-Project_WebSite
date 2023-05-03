@@ -27,7 +27,7 @@ export default function Order(){
             <div>
                 {data && (
                 <div className="bg-light rounded mb-5">
-                    <label>Booking Status: {data["status"]}</label><br />
+                    <span style={{ fontWeight: 'bold' }}>Booking Status: {data["status"]}</span><br />
                     <h2>Flight Details</h2>
                     <div className="bg-light rounded mb-5">
                         <label>Flight ID: {data["trip_detail"]['flight_id']}</label><br />

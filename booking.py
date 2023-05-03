@@ -14,7 +14,7 @@ class BookingSystem:
         self.__number_of_travelers = len(self.__travelers) + 1
         self.__contact_info = None
         self.__price_details = None
-        self.__status = "In Progress"      # In Progress, Need Payment
+        self.status = "In Progress"      # Need Payment, Completed
 
     @staticmethod
     def generate_airpaz_code():
@@ -44,15 +44,7 @@ class BookingSystem:
     
     @property
     def price_details(self):
-        return self.__total_price
-    
-    @property
-    def status(self):
-        return self.__status
-    
-    @status.setter
-    def status(self, status):
-        self.__status = status
+        return self.__price_details
     
     def add_ons_baggage(self, index, baggage_weight: int=0):
         self.__travelers[index]['baggage_weight'] += baggage_weight
@@ -74,7 +66,7 @@ class BookingSystem:
         self.__price_details = self.calculate_price(self.__trip, self.__travelers)
 
         # Set initial status as "Need Payment"
-        self.__status = "Need Payment"
+        self.status = "Need Payment"
 
         # Return the booking ID
         return self.airpaz_code
@@ -94,7 +86,7 @@ class BookingSystem:
                 "number_of_travelers": self.__number_of_travelers,
                 "travelers": traveler_details,
                 "price_details": self.__price_details,
-                "status": self.__status
+                "status": self.status
             }
         else:
             raise ValueError("Invalid airpaz code.")
@@ -111,7 +103,7 @@ class BookingSystem:
             "contact_info": self.__contact_info.get_contact_info(),
             "travelers": traveler_details,
             "price_details": self.__price_details,
-            "status": self.__status
+            "status": self.status
         }
 
 class Order:
@@ -130,8 +122,6 @@ class Order:
             if id == booking.airpaz_code:
                 return booking.get_booking_by_id(id)
 
-# order
-orders = Order()
 
 if __name__ == "__main__":
     

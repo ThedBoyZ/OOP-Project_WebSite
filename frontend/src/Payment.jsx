@@ -3,19 +3,21 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { airpaz_code } from "./Booking_page";
 
-export {data}
-
-var data = [];
+export { id }
+var id
 
 export default function Payment() {
+
   const navigate = useNavigate();
   const [data, setData] = useState(null);
 
   useEffect(() => {
+    
     axios
       .get(`http://127.0.0.1:8000/booking/${airpaz_code['airpaz_code']}`)
       .then((res) => {
         setData(res.data["booking_details"]);
+        id = res.data["booking_details"]["airpaz_code"];
       })
       .catch((error) => {
         console.log(error);
@@ -28,7 +30,7 @@ export default function Payment() {
       <div>
         {data && (
           <div className="bg-light rounded mb-5">
-            <label>Airpax Code: {String(data["airpaz_code"])}</label><br />
+            <label>Airpaz Code: {String(data["airpaz_code"])}</label><br />
             <label>Booking Status: {String(data["status"])}</label><br />
           </div>
         )}
@@ -45,9 +47,9 @@ export default function Payment() {
 
         <h2>Payment Methods</h2>
         <a href="payment/promptpay">Promptpay</a><br/>
-        <a href="payment/visa">VISA</a><br/>
+        <a href="payment/creditcard">Credit Card</a><br/>
         <a href="payment/paypal">PayPal</a><br/>
-        <a href="/">Back to home</a>
+        <a href="/Booking_page">Back to booking</a>
       </div>
     </div>
   );

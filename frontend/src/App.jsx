@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import Profile from './Profile';
 import Register from './Register';
-  import Homepage from './Homepage';
+import Homepage from './Homepage';
 import Promotion from './Promotion';
 import Show_flight from './show_flight';
 import Order from './Order';
@@ -15,7 +15,7 @@ import Checkout from './Checkout';
 
 import Paypal from './Paypal';
 import Promptpay from './Promptpay';
-import Visa from './Visa';
+import Creditcard from './Creditcard';
 
 import Booking from './Booking_page';
 
@@ -37,7 +37,7 @@ function App(){
 
         <Route path='/payment/promptpay' element = {<Promptpay/>}/>
         <Route path='/payment/paypal' element = {<Paypal/>}/>
-        <Route path='/payment/visa' element = {<Visa/>}/>
+        <Route path='/payment/creditcard' element = {<Creditcard/>}/>
 
         <Route path='/booking' element = {<Booking/>}/>
       </Routes>
