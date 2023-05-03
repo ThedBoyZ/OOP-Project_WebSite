@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { airpaz_code } from "./Booking_page";
 
 
 var respond_price = "";
@@ -17,7 +18,7 @@ export default function Promptpay(){
         
 
         axios.post("http://127.0.0.1:8000/paypal", {
-            id:`${5001}`
+            id:`${airpaz_code['airpaz_code']}`
             
         })
         .then(res => {

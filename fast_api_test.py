@@ -9,7 +9,7 @@ from Coupon import Coupon
 from Coupon import CouponCollection
 from Coupon import coupon_list
 from Payment_page import Payment
-from Payment_page import InternetBanking
+from Payment_page import Promptpay
 from Payment_page import CreditCard
 from Payment_page import Paypal
 from Check_orders_for_customer import booking_list
@@ -38,6 +38,8 @@ app = FastAPI()
 p1 = User()
 
 booking_system = BookingSystem()
+
+orders = Order()
 
 origins = [
     "http://localhost:3000",
@@ -170,29 +172,35 @@ async def get_total_price(booking_id: str):
 async def new_payment(payment_method: str):
     return payment_method # Want to change path to each of payment method
 
-@app.post("/internet_banking", tags=['Payment'])
+@app.post("/promptpay", tags=['Payment'])
 async def new_payment(data : dict):
-    transaction = InternetBanking()
+    transaction = Promptpay()
     for booking in orders.booking_list:
         if data['id'] == booking.airpaz_code:
-            transaction.make_payment(booking.price_details["Total_price"])
-    return {"Price": transaction.get_price(), "Processing Fee": transaction.get_processing_fee(), "Total_Price": transaction.get_total_price()}
+            transaction.price(booking.price_details["Total_price"])
+            transaction.make_payment()
+            booking.status = "Completed"
+    return {"Price": transaction.price, "Processing Fee": transaction.processing_fee, "Total_Price": transaction.total_price}
     
 @app.post("/credit_card", tags=['Payment'])
 async def new_payment(data : dict):
-    transaction = InternetBanking()
+    transaction = CreditCard()
     for booking in orders.booking_list:
         if data['id'] == booking.airpaz_code:
-            transaction.make_payment(booking.price_details["Total_price"])
-    return {"Price": transaction.get_price(), "Processing Fee": transaction.get_processing_fee(), "Total_Price": transaction.get_total_price()}
+            transaction.price(booking.price_details["Total_price"])
+            transaction.make_payment()
+            booking.status = "Completed"
+    return {"Price": transaction.price, "Processing Fee": transaction.processing_fee, "Total_Price": transaction.total_price}
 
 @app.post("/paypal", tags=['Payment'])
 async def new_payment(data : dict):
-    transaction = InternetBanking()
+    transaction = Paypal()
     for booking in orders.booking_list:
         if data['id'] == booking.airpaz_code:
-            transaction.make_payment(booking.price_details["Total_price"])
-    return {"Price": transaction.get_price(), "Processing Fee": transaction.get_processing_fee(), "Total_Price": transaction.get_total_price()}
+            transaction.price(booking.price_details["Total_price"])
+            transaction.make_payment()
+            booking.status = "Completed"
+    return {"Price": transaction.price, "Processing Fee": transaction.processing_fee, "Total_Price": transaction.total_price}
 
 @app.post("/booking", tags=["booking"])
 async def add_booking(data: dict):
@@ -206,6 +214,7 @@ async def add_booking(data: dict):
         travelers.append(traveler)
 
     airpaz_code = booking_system.booking(trip, contact, travelers)
+    orders.add_booking(booking_system)
     return {"airpaz_code": airpaz_code}
 
 @app.get("/booking/{airpaz_code}", tags=["booking"])

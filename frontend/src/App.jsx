@@ -15,7 +15,7 @@ import Checkout from './Checkout';
 
 import Paypal from './Paypal';
 import Promptpay from './Promptpay';
-import Visa from './Visa';
+import Creditcard from './Creditcard';
 
 import Booking from './Booking_page';
 
@@ -37,7 +37,7 @@ function App(){
 
         <Route path='/payment/promptpay' element = {<Promptpay/>}/>
         <Route path='/payment/paypal' element = {<Paypal/>}/>
-        <Route path='/payment/visa' element = {<Visa/>}/>
+        <Route path='/payment/creditcard' element = {<Creditcard/>}/>
 
         <Route path='/booking' element = {<Booking/>}/>
       </Routes>

@@ -1,15 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-
-
+import { airpaz_code } from "./Booking_page";
 
 
 var respond_price = "";
 var respond_fee = "";
 var respond_total = "";
 
-export default function Visa(){
+export default function Creditcard(){
     const [price, setPrice] = useState("")
     const [fee, setFee] = useState("")
     const [totalPrice, setTotalPrice] = useState("")
@@ -21,7 +20,7 @@ export default function Visa(){
         
 
         axios.post("http://127.0.0.1:8000/credit_card", {
-            id:`${5001}`
+            id:`${airpaz_code['airpaz_code']}`
             
         })
         .then(res => {
@@ -50,7 +49,7 @@ export default function Visa(){
     }, [html])
     return(
         <div>
-            <h1>Visa</h1>
+            <h1>Credit Card</h1>
             {show_price()}
             {html}<br/>
             <button type="button" onClick={() => payment_complete()}>Pay!</button>
