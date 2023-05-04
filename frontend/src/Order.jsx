@@ -27,7 +27,7 @@ export default function Order(){
             <div>
                 {data && (
                 <div className="bg-light rounded mb-5">
-                    <span style={{ fontWeight: 'bold' }}>Booking Status: {data["status"]}</span><br />
+                    <span style={{ fontWeight: 'bold' , color:'red' }}>Booking Status: {data["status"]}</span><br />
                     <h2>Flight Details</h2>
                     <div className="bg-light rounded mb-5">
                         <label>Flight ID: {data["trip_detail"]['flight_id']}</label><br />
@@ -43,9 +43,17 @@ export default function Order(){
                     </div>
                     <h2>Contact Details</h2>
                     <div className="bg-light rounded mb-5">
-                        <label>Name: {data["contact_info"]['name']}</label><br />
-                        <label>Surname: {data["contact_info"]['surname']}</label><br />
+                        <label>{data["contact_info"]['title']} {data["contact_info"]['name']} {data["contact_info"]['surname']}</label><br />
                         <label>Email: {data["contact_info"]['email']}</label><br />
+                    </div>
+                    <h2>Traveler Details</h2>
+                    <div className="bg-light rounded mb-5">
+                        {[...Array(data["number_of_travelers"])].map((_, i) => (    
+                            <div key={i}>
+                                <label>{data["travelers"][i]['type_person']}, {data["travelers"][i]['name']} {data["travelers"][i]['surname']}</label>
+                                <br />
+                            </div>
+                        ))}
                     </div>
                 </div>
                 )}

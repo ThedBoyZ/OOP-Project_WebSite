@@ -11,7 +11,7 @@ class CouponCollection:
         self._coupon_detail = []
 
     def add_coupon(self, coupon):
-        self._coupon_detail.append(vars(coupon))
+        self._coupon_detail.append(coupon)
 
     def delete_coupon(self, coupon):
         self._coupon_detail.remove(coupon)
@@ -27,11 +27,15 @@ class CouponCollection:
     def descript_coupon_detail(self, index):
         return [self._coupon_detail[index].code, self._coupon_detail[index].discount, self._coupon_detail[index].description, self._coupon_detail[index].promo_period, self._coupon_detail[index].travel_period]
 
-# ------------------------------------- Instances for Test 0 ----------------------
-    # Collect 2 Objects from Coupon in CouponCollection
+# ------------------------------------- Instances ----------------------
+
+# Collect 2 Objects from Coupon in CouponCollection
 coupon_list = CouponCollection()
-coupon_list.add_coupon(Coupon('dc10', 10, 'new user', '31-12-2023', ['01-01-2024', '31-01-2024']))
-coupon_list.add_coupon(Coupon('dc20', 20, 'premium user', '31-07-2023', ['01-01-2023', '31-12-2024']))
+coupon_list.add_coupon(Coupon('APZKTC10', 10, 'Get 10% discount using promo code APZKTC10 with no minimum transactions for all airlines', '30-06-2023', ['01-04-2023', '31-12-2024']))
+coupon_list.add_coupon(Coupon('APZKTC05', 5, 'Get 5% discount using promo code APZKTC05 with no minimum transaction for all airlines', '30-06-2023', ['01-04-2023', '31-01-2025']))
+coupon_list.add_coupon(Coupon('APZFLIGHTTHB23', 2, 'Get 2% discount using promo code APZFLIGHTTHB23 with no minimum transaction for all airlines', '31-05-2023', ['01-05-2023', '31-12-2024']))
+coupon_list.add_coupon(Coupon('APZFLIGHTTHB77', 7, 'Get 7% discount using promo code APZFLIGHTTHB77 with no minimum transaction for all airlines', '31-05-2023', ['01-05-2023', '31-12-2024']))
+coupon_list.add_coupon(Coupon('APZFLIGHTTHB202', 20, 'Get 20% discount using promo code APZFLIGHTTHB202 with no minimum transaction for all airlines', '31-05-2023', ['01-05-2023', '31-12-2024']))
 
 if __name__ == '__main__':
     

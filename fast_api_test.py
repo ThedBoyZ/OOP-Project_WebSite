@@ -159,47 +159,41 @@ async def delete_coupon(code: str):
         'data' : f'Coupon code: {deleted_coupon.code} has been deleted'
     }
 
-@app.post("/payment_method", tags=['Payment'])
-async def new_payment(payment_method: str):
-    return payment_method # Want to change path to each of payment method
+@app.get("/payment_complete/{airpaz_code}", tags=['Payment'])
+async def new_payment(airpaz_code: str):
+    for booking in orders.booking_list:
+        if airpaz_code == booking.airpaz_code:
+            booking.status = "Completed"
+    # return {"Status": booking.status}
 
-<<<<<<< HEAD
 @app.get("/promptpay/{airpaz_code}", tags=['Payment'])
 async def new_payment(airpaz_code: str):
     transaction = Promptpay()
     for booking in orders.booking_list:
         if airpaz_code == booking.airpaz_code:
             transaction.price = int(booking.price_details["Total_price"])
-=======
-@app.post("/promptpay", tags=['Payment'])
-async def new_payment(data : dict):
-    transaction = Promptpay()
-    for booking in orders.booking_list:
-        if data['id'] == booking.airpaz_code:
-            transaction.price(booking.price_details["Total_price"])
->>>>>>> 8498a5a911db5c7ea3dc3dc89a42f1abb09f7bc1
             transaction.make_payment()
-            booking.status = "Completed"
+            # booking.status = "Completed"
     return {"Price": transaction.price, "Processing Fee": transaction.processing_fee, "Total_Price": transaction.total_price}
     
-@app.post("/credit_card", tags=['Payment'])
-async def new_payment(data : dict):
+@app.get("/credit_card/{airpaz_code}", tags=['Payment'])
+async def new_payment(airpaz_code: str):
     transaction = CreditCard()
     for booking in orders.booking_list:
-        if data['id'] == booking.airpaz_code:
-            transaction.price(booking.price_details["Total_price"])
+        if airpaz_code == booking.airpaz_code:
+            transaction.price = int(booking.price_details["Total_price"])
             transaction.make_payment()
-            booking.status = "Completed"
+            # booking.status = "Completed"
     return {"Price": transaction.price, "Processing Fee": transaction.processing_fee, "Total_Price": transaction.total_price}
 
-@app.post("/paypal", tags=['Payment'])
-async def new_payment(data : dict):
+@app.get("/paypal/{airpaz_code}", tags=['Payment'])
+async def new_payment(airpaz_code: str):
     transaction = Paypal()
     for booking in orders.booking_list:
-        if data['id'] == booking.airpaz_code:
-            transaction.price(booking.price_details["Total_price"])
+        if airpaz_code == booking.airpaz_code:
+            transaction.price = int(booking.price_details["Total_price"])
             transaction.make_payment()
-            booking.status = "Completed"
+            # booking.status = "Completed"
     return {"Price": transaction.price, "Processing Fee": transaction.processing_fee, "Total_Price": transaction.total_price}
 
 @app.post("/booking", tags=["booking"])
@@ -224,15 +218,14 @@ async def get_booking(airpaz_code: str):
 
 @app.post("/discount", tags=["discount"])
 async def discount(data: dict):
-    travelers = []
-    for i in range(int(data['number_of_traveler'])):
-        traveler_data = data['travelers'][i]
-        traveler = Traveler(traveler_data['type_person'], traveler_data['title'], traveler_data['gender'], traveler_data['name'], traveler_data['surname'], traveler_data['dob'], traveler_data['nationality'], traveler_data['baggage_weight'])
-        travelers.append(traveler)
-
-    details = PriceDetailCollection(my_trip[2], travelers)
-    details.discount(data['promo_code'])
-    return {"Update_price_details": details.get_price_details()}
+    details = booking_system.get_booking_by_id(data['airpaz_code'])
+    if details:  # check if booking exists
+        new_price = PriceDetailCollection(details["trip_detail"], booking_system.travelers)
+        res = new_price.discount(data['promo_code'])
+        booking_system.price_details = new_price.get_price_details()
+        return {"Status": res}
+    else:
+        return {"Status": "Error: Booking not found"}
 
 @app.get("/orders/{airpaz_code}", tags=["orders"])
 async def get_booking_history(airpaz_code: str):

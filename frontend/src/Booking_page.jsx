@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { selected_value } from './show_flight';
 export { airpaz_code }
 
-var airpaz_code 
+var airpaz_code
 
 function Traveler({ travelerIndex, travelers, setTravelers }) {
 

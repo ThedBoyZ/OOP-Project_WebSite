@@ -132,12 +132,13 @@ class PriceDetailCollection:
             elif detail.person_type == "Infant":
                 self.number_of_infant += 1
 
-    def discount(self, promo_code = '0'):
+    def discount(self, promo_code: str='0'):
         for coupon in coupon_list._coupon_detail:
             if promo_code == coupon.code:
                 self.percent_discount = coupon.discount
                 self.total_price = self.total_price * (100 - coupon.discount) / 100
-                # return self.total_price * (100 - coupon.discount) / 100
+                return "Completed."
+        return "Invalid Promotion Code."
 
     def get_price_details(self):
         output = {}

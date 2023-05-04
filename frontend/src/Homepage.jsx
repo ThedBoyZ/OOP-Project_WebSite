@@ -40,7 +40,6 @@ export default function Homepage() {
             <a href="/profile">Profile</a>
             <a href="/promotion">Promotion</a>
             <a href="/order">Order</a>
-            <a href="/payment">Payment</a>
             
             <form>
                 <fieldset>

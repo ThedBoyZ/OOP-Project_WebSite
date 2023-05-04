@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { airpaz_code } from "./Booking_page";
@@ -7,22 +7,49 @@ export { id }
 var id
 
 export default function Payment() {
-
+  
   const navigate = useNavigate();
   const [data, setData] = useState(null);
+  const [promocode, setPromocode] = useState("");
+  const [status, setStatus] =useState(null);
 
   useEffect(() => {
-    
-    axios
-      .get(`http://127.0.0.1:8000/booking/${airpaz_code['airpaz_code']}`)
+    axios.get(`http://127.0.0.1:8000/booking/${airpaz_code['airpaz_code']}`)
       .then((res) => {
         setData(res.data["booking_details"]);
-        id = res.data["booking_details"]["airpaz_code"];
+        // console.log(data['airpaz_code']);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
+
+  const promptpay = () => {
+      id = airpaz_code['airpaz_code'];
+      navigate('/payment/promptpay')
+  }
+
+  const creditcard = () => {
+      id = airpaz_code['airpaz_code'];
+      navigate('/payment/creditcard')
+  }
+
+  const paypal = () => {
+      id = airpaz_code['airpaz_code'];
+      navigate('/payment/paypal')
+  }
+
+  const verify = () => {
+      axios.post("http://127.0.0.1:8000/discount", {
+          airpaz_code: `${airpaz_code['airpaz_code']}`,
+          promo_code: promocode,
+      })
+      .then(res => {
+        console.log(res.data);
+        setStatus(res.data["Status"])
+      });
+  };
+
 
   return (
     <div className="App list-group-item justify-content-center align-items-center mx-auto" style={{ "width": "400px", "backgroundColor": "white", "marginTop": "15px"}}>
@@ -44,13 +71,16 @@ export default function Payment() {
             <label>Total Price: {String(data["price_details"]["Total_price"])} ฿</label><br />
           </div>
         )}
+        <h5>Voucher/Promo Code</h5>
+        <input className="mt-2" type="text" placeholder="Input code here" id="promocode" onChange={(e) => setPromocode(e.target.value)}></input>
+        <button className="bg-light rounded mb-2" type="button" onClick={() => verify()}>verify</button><br/>
+        <label style={{ fontWeight: 'bold' , color:'red' }}>{status}</label>
 
         <h2>Payment Methods</h2>
-        <a href="payment/promptpay">Promptpay</a><br/>
-        <a href="payment/creditcard">Credit Card</a><br/>
-        <a href="payment/paypal">PayPal</a><br/>
-        <a href="/Booking_page">Back to booking</a>
+        <button className="bg-light rounded mb-2" type="button" onClick={() => promptpay()}>Promptpay</button><br/>
+        <button className="bg-light rounded mb-2" type="button" onClick={() => creditcard()}>Credit Card</button><br/>
+        <button className="bg-light rounded mb-2" type="button" onClick={() => paypal()}>PayPal</button><br/>
       </div>
     </div>
   );
-}
+} 

@@ -13,9 +13,9 @@ import Payment from './Payment'
 import Add_flight from './Add_flight';
 import Checkout from './Checkout';
 
-import Paypal from './Paypal';
 import Promptpay from './Promptpay';
 import Creditcard from './Creditcard';
+import Paypal from './Paypal';
 
 import Booking from './Booking_page';
 
@@ -36,8 +36,8 @@ function App(){
         <Route path='/order' element = {<Order/>}/>
 
         <Route path='/payment/promptpay' element = {<Promptpay/>}/>
-        <Route path='/payment/paypal' element = {<Paypal/>}/>
         <Route path='/payment/creditcard' element = {<Creditcard/>}/>
+        <Route path='/payment/paypal' element = {<Paypal/>}/>
 
         <Route path='/booking' element = {<Booking/>}/>
       </Routes>

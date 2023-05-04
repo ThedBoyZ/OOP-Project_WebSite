@@ -11,7 +11,7 @@ class BookingSystem:
         self.__booking_date = None
         self.__trip = None
         self.__travelers = []
-        self.__number_of_travelers = len(self.__travelers) + 1
+        self.__number_of_travelers = 0
         self.__contact_info = None
         self.__price_details = None
         self.status = "In Progress"      # Need Payment, Completed
@@ -46,6 +46,10 @@ class BookingSystem:
     def price_details(self):
         return self.__price_details
     
+    @price_details.setter
+    def price_details(self, price_details):
+        self.__price_details = price_details
+    
     def add_ons_baggage(self, index, baggage_weight: int=0):
         self.__travelers[index]['baggage_weight'] += baggage_weight
         return self.__travelers
@@ -54,7 +58,8 @@ class BookingSystem:
         # Set trip, contact info, and traveler info
         self.__trip = trip
         self.__contact_info = contact
-        
+        self.__number_of_travelers = len(travelers)
+
         for traveler in travelers:
             # Check if the traveler already exists in the booking
             if traveler not in self.__travelers:
