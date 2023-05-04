@@ -163,12 +163,21 @@ async def delete_coupon(code: str):
 async def new_payment(payment_method: str):
     return payment_method # Want to change path to each of payment method
 
+<<<<<<< HEAD
 @app.get("/promptpay/{airpaz_code}", tags=['Payment'])
 async def new_payment(airpaz_code: str):
     transaction = Promptpay()
     for booking in orders.booking_list:
         if airpaz_code == booking.airpaz_code:
             transaction.price = int(booking.price_details["Total_price"])
+=======
+@app.post("/promptpay", tags=['Payment'])
+async def new_payment(data : dict):
+    transaction = Promptpay()
+    for booking in orders.booking_list:
+        if data['id'] == booking.airpaz_code:
+            transaction.price(booking.price_details["Total_price"])
+>>>>>>> 8498a5a911db5c7ea3dc3dc89a42f1abb09f7bc1
             transaction.make_payment()
             booking.status = "Completed"
     return {"Price": transaction.price, "Processing Fee": transaction.processing_fee, "Total_Price": transaction.total_price}

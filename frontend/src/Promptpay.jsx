@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+<<<<<<< HEAD
 import { id } from "./Payment";
 
 
@@ -13,6 +14,31 @@ export default function Promptpay(){
         .get(`http://127.0.0.1:8000/promptpay/${id}`)
         .then(res => {
             setData(res.data);
+=======
+import { airpaz_code } from "./Booking_page";
+
+
+var respond_price = "";
+var respond_fee = "";
+var respond_total = "";
+
+export default function Promptpay(){
+    const navigate = useNavigate()
+
+    const [html, setHtml] = useState("")
+
+    const show_price = () =>{
+        
+
+        axios.post("http://127.0.0.1:8000/promptpay", {
+            id:`${airpaz_code['airpaz_code']}`
+            
+        })
+        .then(res => {
+            respond_price = res.data['Price']
+            respond_fee = res.data['Processing Fee']
+            respond_total = res.data['Total_Price']
+>>>>>>> 8498a5a911db5c7ea3dc3dc89a42f1abb09f7bc1
         })
         .catch((error) => {
         console.log(error); 
