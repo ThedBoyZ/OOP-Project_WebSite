@@ -10,9 +10,6 @@ class User:
         self._status = status
 
        # self.user_detail = {"email":f"{self._email}", "name":f"{self._name}", "status":f"{self._status}"}
-    
-    def ValidateUser():
-        pass
 
     def get_status(self):
         return self._status
