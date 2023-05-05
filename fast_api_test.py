@@ -2,16 +2,13 @@ from typing import Optional,Dict
 from fastapi import FastAPI,HTTPException
 
 from system import System
-from test import User
+# from test import User
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from Coupon import Coupon
 from Coupon import CouponCollection
 from Coupon import coupon_list
-from Payment_page import Payment
-from Payment_page import Promptpay
-from Payment_page import CreditCard
-from Payment_page import Paypal
+from Payment_page import Payment, Promptpay, CreditCard, Paypal
 
 from datetime import datetime
 from copy import deepcopy
@@ -19,12 +16,12 @@ from fastapi import FastAPI
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from airport_and_airline import AirlineCollection,AirportCollection
-from select_flight import Trip
+from flights import Trip
 
 from booking import *
 from total_price import *
 
-from account import Traveler, Contact
+from account import User, Traveler, Contact
 
 from database import fetch_one_todo, create, update_todo, testDB
 

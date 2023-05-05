@@ -41,6 +41,8 @@ class User:
             self._status = "guest"
             return self._status        
 
+    def logout(self):
+        self._status = 'guest'
 
     def register(self,name , surname, email, password, confirm_password, country):
         self.__name = name
@@ -70,8 +72,8 @@ class User:
     def __str__(self):
         return self.__customer_detail
     
-    def edit_account(self, email, name, surname, country): #return everything and save all
-        exist_data = System.search_data_by_email(email)
+    def edit_account(self, name, surname, country): #return everything and save all
+        exist_data = System.search_data_by_email(self._email)
         exist_data["name"] = name
         exist_data["surname"] = surname
         exist_data["country"] = country
@@ -84,6 +86,9 @@ class User:
 
     def see_data(self, email):
         return System.search_data_by_email(email)
+    
+    def see_profile(self):
+        return System.search_data_by_email(self.__email)
     
 
 class Contact:

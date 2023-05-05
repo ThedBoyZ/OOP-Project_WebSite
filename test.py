@@ -1,6 +1,4 @@
-import hashlib
 from system import System
-from total_price import PriceDetailCollection
 class User:
     def __init__(self, name="guest", surname="guest", email="guest", password="guest", status="guest"):
         self._name = name
