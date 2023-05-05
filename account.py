@@ -24,8 +24,8 @@ class User:
                 print("login complete")
                 #User.set_user_detail(self.__email, self.__name, "Customer")
                 self._email = self.__email
-                if self.__email == "admin@":
-                    self._status = "admin"
+                if self.__email == "root@":
+                    self._status = "root"
                 else:
                     self._status = "customer"
                 return self._status

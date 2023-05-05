@@ -28,7 +28,7 @@ const Profile = () => {
             </li>
           ))
         ) : (
-          <p>Loading...</p>
+          <p>You haven't login yet</p>
         )}
       </ul>
     </div>

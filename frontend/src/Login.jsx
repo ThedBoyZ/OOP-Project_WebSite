@@ -17,10 +17,15 @@ export default function Login() {
     
     })
     .then(res => {
-      console.log(res.data);
-      if(res.data["login_status"]==="complete")
+      console.log(res.data['login_status']);
+      if(res.data["login_status"]=="complete")
       {
         navigate("/")
+      }
+      else if(res.data['login_status']=='root')
+      {
+        navigate('/admin_page')
+        alert("ADMIN")
       }
       else
       {
