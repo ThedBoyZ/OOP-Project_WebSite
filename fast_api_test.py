@@ -20,6 +20,7 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from airport_and_airline import AirlineCollection,AirportCollection
 from select_flight import Trip
+from flights import Flight
 
 from booking import *
 from total_price import *
@@ -63,6 +64,8 @@ def read_root():
 async def read_root():
     return System.read_data()
 
+
+
 @app.post("/login", tags=["Login"])
 async def login(body : dict) -> dict:
     email = body.get("email")
@@ -74,7 +77,8 @@ async def login(body : dict) -> dict:
     elif login_status == "customer":
         return {"login_status": "complete", "login_as": email}
     elif login_status == "root":
-        return {"login_status:":"root"}
+        return {"login_status":"root", "login_as": email}
+    
     
     
 
@@ -235,3 +239,38 @@ async def get_booking_history(airpaz_code: str):
 @app.post("/edit_account", tags=['edit account'])
 async def edit_account(name, surname, country):
     return p1.edit_account(name, surname, country)
+
+
+@app.post("/add_flight", tags=["add flight api"])
+async def add_flight(data : dict):
+    flight = Flight(
+                data["airline"],
+                data["day"],
+                data["departure_airport"],
+                data["departure_day"],
+                data["departure_time"],
+                data["arrival_airport"],
+                data["arrival_day"],
+                data["arrival_time"],
+                data["baggage"],
+                data["refund"],
+                data["reschedule"],
+                data["id"],
+                data["status"]
+        )
+    
+    return {
+        "airline": flight.airline,
+        "day": flight.day,
+        "departure_airport": flight.departure_airport,
+        "departure_day": flight.departure_day,
+        "departure_time": flight.departure_time,
+        "arrival_airport": flight.arrival_airport,
+        "arrival_day": flight.arrival_day,
+        "arrival_time": flight.arrival_time,
+        "baggage": flight.baggage,
+        "refund": flight.refund,
+        "reschedule": flight.reschedule,
+        "id": flight.id,
+        "status": flight.status
+    }

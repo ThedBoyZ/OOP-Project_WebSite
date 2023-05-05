@@ -19,6 +19,8 @@ import Paypal from './Paypal';
 
 import Booking from './Booking_page';
 
+import Admin_page from './AdminPage';
+
 function App(){
   return (
     <div className ="App">
@@ -40,6 +42,8 @@ function App(){
         <Route path='/payment/paypal' element = {<Paypal/>}/>
 
         <Route path='/booking' element = {<Booking/>}/>
+
+        <Route path='/admin_page' element={<Admin_page/>}/>
       </Routes>
     </div>
   )
